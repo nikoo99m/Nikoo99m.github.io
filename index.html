@@ -484,14 +484,26 @@
 
         <!-- ====== HIDDEN TEMPLATES ====== -->
         <template id="tpl-powerbi">
-            <div data-title="Interactive Power BI Dashboard" data-meta="Power BI,DAX" data-link="POWERBI_PUBLISH_LINK">
-                <p>Tracks key metrics with slicers, drill‑through, and a responsive layout.</p>
+            <div data-title="Power BI — Blinkit Sales & Performance Dashboard" data-meta="Power BI,DAX,Data Modeling">
+                <!-- This first <p> becomes the small intro at the top -->
+
+                <!-- DESCRIPTION FIRST -->
                 <ul>
-                    <li>Star schema with DAX measures.</li>
-                    <li>Tooltips and bookmarks for quick views.</li>
-                    <li>Published via “Publish to web”.</li>
+                    <li><strong>Data Preparation:</strong> Cleaned and transformed sales, outlet, and product tables in
+                        <strong>Power Query</strong>; standardised dates/currency and created calculated columns.
+                    </li>
+                    <li><strong>KPI Cards:</strong> Total Sales (<strong>$1.14M</strong>), Avg Sales
+                        (<strong>$141</strong>), Items (<strong>8095</strong>), Avg Rating (<strong>3.9</strong>).</li>
+
                 </ul>
-                <p><a href="POWERBI_PUBLISH_LINK" target="_blank" rel="noopener">Open live report</a></p>
+                <p><strong>Outcome:</strong> This dashboard enables quick identification of high-performing products,
+                    outlet types, and locations, providing actionable insights to optimize product placement, marketing
+                    focus, and inventory strategy.</p>
+
+                <!-- THEN IMAGE -->
+                <div style="margin-top:12px; display:flex; justify-content:center;">
+                    <img class="powerbi-shot" src="images/9.png" alt="Blinkit Power BI Dashboard" />
+                </div>
             </div>
         </template>
 
