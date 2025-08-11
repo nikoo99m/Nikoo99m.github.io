@@ -5,8 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Nikoo Moghadam — Portfolio</title>
-    <meta name="description"
-        content="Portfolio of Nikoo Moghadam —  Data Analyst. Projects, skills, resume, and contact." />
+    <meta name="description" content="Portfolio of Nikoo Moghadam — Data Analyst. Projects, skills, and contact." />
     <meta name="theme-color" content="#0ea5e9" />
     <style>
         :root {
@@ -59,10 +58,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between
-        }
-
-        .menu a {
-            margin-left: 14px
         }
 
         .hero {
@@ -153,7 +148,8 @@
         .project {
             display: flex;
             flex-direction: column;
-            gap: 10px
+            gap: 10px;
+            cursor: pointer
         }
 
         .meta {
@@ -185,6 +181,202 @@
             color: var(--muted);
             margin-top: 30px
         }
+
+        /* Detail view */
+        #detail-view {
+            display: none
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #294058;
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 10px 14px;
+            cursor: pointer
+        }
+
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 14px
+        }
+
+        .detail-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px
+        }
+
+        .hr {
+            border: 0;
+            border-top: 1px dashed #2a3a4f;
+            margin: 14px 0
+        }
+
+        /* Carousel */
+        .carousel {
+            position: relative;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            max-width: 580px;
+            margin: 20px auto
+        }
+
+        .carousel.ready {
+            display: flex
+        }
+
+        .carousel img {
+            max-width: 100%;
+            border-radius: 8px
+        }
+
+        .carousel-btn {
+            position: absolute;
+            background: rgba(0, 0, 0, .55);
+            color: #fff;
+            border: 0;
+            font-size: 1.6rem;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%)
+        }
+
+        .carousel-btn.prev {
+            left: 8px
+        }
+
+        .carousel-btn.next {
+            right: 8px
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0, 0, 0, .8)
+        }
+
+        .gallery-groups {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0 14px
+        }
+
+        .group-btn {
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid #294058;
+            background: #0f172a;
+            color: var(--text);
+            cursor: pointer;
+            font-weight: 600
+        }
+
+        .group-btn.active {
+            background: linear-gradient(135deg, var(--brand), #22d3ee);
+            color: #001b2e;
+            border-color: transparent
+        }
+
+        .multi-carousel {
+            max-width: 960px;
+            margin: 12px auto 0
+        }
+
+        /* .multi-carousel .strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px
+        } */
+
+        @media (max-width:700px) {
+            .multi-carousel .strip {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* .multi-carousel img {
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+            border: 1px solid #223047;
+            background: #0f172a
+        } */
+
+        .multi-carousel .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px
+        }
+
+        .multi-carousel .nav .pager {
+            font-size: .9rem;
+            color: #94a3b8
+        }
+
+        .multi-carousel .btn {
+            border: 1px solid #294058;
+            background: #0f172a;
+            color: var(--text);
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer
+        }
+
+        .multi-carousel .btn:hover {
+            filter: brightness(1.08)
+        }
+
+        .carousel-strip {
+            display: grid;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .carousel-strip img {
+            width: 100%;
+            max-width: 300px;
+            /* limit image width */
+            height: auto;
+            object-fit: contain;
+            justify-self: center;
+        }
+
+        .multi-carousel .strip {
+            display: grid;
+            gap: 10px;
+            justify-content: center;
+            /* center cells */
+        }
+
+        .multi-carousel img {
+            width: 100%;
+            max-width: 340px;
+            /* <-- hard cap so 1 image isn’t huge */
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid #223047;
+            background: #0f172a;
+            justify-self: center;
+            /* center each image in its grid cell */
+        }
+
+        /* when only 1 image is shown */
+        .multi-carousel .strip.single {
+            grid-template-columns: 1fr;
+            /* a single centered column */
+            justify-items: center;
+        }
     </style>
 </head>
 
@@ -196,98 +388,236 @@
                 <h1>Nikoo Moghadam</h1>
                 <div class="muted">Data Analyst · London, UK</div>
             </div>
-
         </div>
     </header>
 
     <main class="container">
-        <section class="hero">
+        <!-- ====== MAIN (LIST) VIEW ====== -->
+        <section id="list-view">
+            <section class="hero">
+                <div class="card">
+                    <div class="kicker">WELCOME!</div>
+                    <p>Creating data‑driven apps and dashboards. Click a skill to see projects in
+                        <strong>Python</strong>, <strong>Power BI</strong>, <strong>SQL</strong>, and
+                        <strong>Java</strong>.
+                    </p>
+                    <div class="skills-bar" id="skills">
+                        <button class="skill active" data-skill="all">All</button>
+                        <button class="skill" data-skill="java">Java</button>
+                        <button class="skill" data-skill="python">Python</button>
+                        <button class="skill" data-skill="powerbi">Power BI</button>
+                        <button class="skill" data-skill="sql">SQL</button>
+                    </div>
+                </div>
+                <aside class="card">
+                    <div><strong>Contact</strong></div>
+                    <div>Email: <a href="mailto:nikooo.m99@gmail.com">nikooo.m99@gmail.com</a></div>
+                    <div>GitHub: <a href="https://github.com/nikoo99m">nikoo99m</a></div>
+                    <div>LinkedIn: <a href="https://www.linkedin.com/in/nikoo-moghadam-5ab529306/">LinkedIn</a></div>
+                </aside>
+            </section>
+
+            <section id="projects" class="section">
+                <h2>Projects</h2>
+                <div class="projects">
+                    <article class="card project col-6" data-project="powerbi" data-tags="powerbi">
+                        <h3>Interactive Power BI Dashboard</h3>
+                        <p>Live KPI dashboard with slicers & drill‑through.</p>
+                        <div class="meta"><span class="chip">Power BI</span><span class="chip">DAX</span></div>
+                        <button class="cta open-project" data-project="powerbi">Open</button>
+                    </article>
+
+                    <article class="card project col-6" data-project="cookingapp" data-tags="java python">
+                        <h3>CookingApp</h3>
+                        <p>Recipe filters, reviews, ratings; React UI planned.</p>
+                        <div class="meta"><span class="chip">Java</span><span class="chip">Python</span><span
+                                class="chip">Spring Boot</span><span class="chip">JPA</span></div>
+                        <button class="cta open-project" data-project="cookingapp">Open</button>
+                    </article>
+
+                    <article class="card project col-6" data-project="oscars" data-tags="misc">
+                        <h3>Oscars — Awards Search App</h3>
+                        <p>Explore Oscar data with search and filters.</p>
+                        <div class="meta"><span class="chip">Misc</span></div>
+                        <button class="cta open-project" data-project="oscars">Open</button>
+                    </article>
+
+                    <article class="card project col-6" data-project="scrabble" data-tags="java">
+                        <h3>Scrabble</h3>
+                        <p>Word logic and scoring.</p>
+                        <div class="meta"><span class="chip">Java</span></div>
+                        <button class="cta open-project" data-project="scrabble">Open</button>
+                    </article>
+
+                    <article class="card project col-6" data-project="sml" data-tags="java">
+                        <h3>Simple Machine Language Interpreter</h3>
+                        <p>Educational interpreter for a small instruction set.</p>
+                        <div class="meta"><span class="chip">Java</span></div>
+                        <button class="cta open-project" data-project="sml">Open</button>
+                    </article>
+
+                    <article class="card project col-6" data-project="battleship" data-tags="java python">
+                        <h3>Battleship Solver</h3>
+                        <p>Solver for Battleship puzzles.</p>
+                        <div class="meta"><span class="chip">Java</span><span class="chip">Python</span></div>
+                        <button class="cta open-project" data-project="battleship">Open</button>
+                    </article>
+                </div>
+            </section>
+        </section>
+
+        <!-- ====== DETAIL VIEW ====== -->
+        <section id="detail-view">
             <div class="card">
-                <div class="kicker">WELCOME!</div>
-                <p>Creating data-driven apps and dashboards. Click a skill to see projects in
-                    <strong> Python, Power
-                        BI, SQL, Java</strong>.</p>
-                <div class="skills-bar" id="skills">
-                    <button class="skill active" data-skill="all">All</button>
-                    <button class="skill" data-skill="java">Java</button>
-                    <button class="skill" data-skill="python">Python</button>
-                    <button class="skill" data-skill="powerbi">Power BI</button>
-                    <button class="skill" data-skill="sql">SQL</button>
+                <div class="detail-header">
+                    <button class="back-btn" id="backBtn" aria-label="Back to projects">← Back</button>
+                    <div class="detail-meta" id="detailMeta"></div>
                 </div>
-            </div>
-            <aside class="card">
-                <div><strong>Contact</strong></div>
-                <div>Email: <a href="mailto:nikooo.m99@gmail.com">nikooo.m99@gmail.com</a></div>
-                <div>GitHub: <a href="https://github.com/nikoo99m" target="_blank">nikoo99m</a></div>
-                <div>LinkedIn: <a href="https://www.linkedin.com/in/nikoo-moghadam-5ab529306/"
-                        target="_blank">LinkedIn</a>
-                </div>
-            </aside>
-        </section>
-
-        <section id="projects" class="section">
-            <h2>Projects</h2>
-            <div class="projects">
-                <!-- Power BI -->
-                <article class="card project col-6" data-tags="powerbi">
-                    <h3>Interactive Power BI Dashboard</h3>
-                    <p>Live KPI dashboard with slicers & drill‑through. Published to Power BI Service.</p>
-                    <div class="meta"><span class="chip">Power BI</span><span class="chip">DAX</span></div>
-                    <a class="cta" href="POWERBI_PUBLISH_LINK" target="_blank">Open live report</a>
-                </article>
-
-                <!-- Java -->
-                <article class="card project col-6" data-tags="java frontend">
-                    <h3>CookingApp</h3>
-                    <p>Recipe filters, reviews, ratings; React UI planned; clean domain model with JPA.</p>
-                    <div class="meta"><span class="chip">Java</span><span class="chip">Spring Boot</span><span
-                            class="chip">JPA</span></div>
-                    <a class="cta" href="https://github.com/nikoo99m/CookingApp" target="_blank">Code on GitHub</a>
-                </article>
-
-
-
-                <!-- Extra repos from your GitHub -->
-                <article class="card project col-6" data-tags="misc">
-                    <h3>Oscars — Awards Search App</h3>
-                    <p>Explore Oscar data with search and filters.</p>
-                    <div class="meta">
-                        <span class="chip">Misc</span>
-                    </div>
-                    <a class="cta" href="https://github.com/nikoo99m/Oscars" target="_blank">Code on GitHub</a>
-                </article>
-
-
-
-                <article class="card project col-6" data-tags="java">
-                    <h3>Scrabble</h3>
-                    <p>Scrabble word logic and scoring.</p>
-                    <div class="meta"><span class="chip">Java</span></div>
-                    <a class="cta" href="https://github.com/nikoo99m/Scrabble" target="_blank">Code on GitHub</a>
-                </article>
-
-                <article class="card project col-6" data-tags="java">
-                    <h3>Simple Machine Language Interpreter</h3>
-                    <p>Educational interpreter for a simple machine language.</p>
-                    <div class="meta"><span class="chip">Java</span></div>
-                    <a class="cta" href="https://github.com/nikoo99m/Simple-Machine-Language-processor"
-                        target="_blank">Code on GitHub</a>
-                </article>
-
-
-                <article class="card project col-6" data-tags="java python">
-                    <h3>Battleship Solver</h3>
-                    <p>Solver for Battleship puzzles.</p>
-                    <div class="meta">
-                        <span class="chip">Java</span>
-                        <span class="chip">Python</span>
-                    </div>
-                    <a class="cta" href="https://github.com/nikoo99m/BattleshipSolver" target="_blank">Code on
-                        GitHub</a>
-                </article>
-
+                <h2 id="detailTitle">Project Title</h2>
+                <p id="detailIntro">Intro paragraph…</p>
+                <div class="hr"></div>
+                <div id="detailBody"></div>
+                <div class="hr"></div>
+                <p><a id="detailLink" href="#" target="_blank" rel="noopener">View Repository</a></p>
             </div>
         </section>
+
+        <!-- ====== HIDDEN TEMPLATES ====== -->
+        <template id="tpl-powerbi">
+            <div data-title="Power BI — Blinkit Sales & Performance Dashboard" data-meta="Power BI,DAX,Data Modeling">
+                <!-- This first <p> becomes the small intro at the top -->
+
+                <!-- DESCRIPTION FIRST -->
+                <ul>
+                    <li><strong>Data Preparation:</strong> Cleaned and transformed sales, outlet, and product tables in
+                        <strong>Power Query</strong>; standardised dates/currency and created calculated columns.
+                    </li>
+                    <li><strong>KPI Cards:</strong> Total Sales (<strong>$1.14M</strong>), Avg Sales
+                        (<strong>$141</strong>), Items (<strong>8095</strong>), Avg Rating (<strong>3.9</strong>).</li>
+
+                </ul>
+                <p><strong>Outcome:</strong> This dashboard enables quick identification of high-performing products,
+                    outlet types, and locations, providing actionable insights to optimize product placement, marketing
+                    focus, and inventory strategy.</p>
+
+                <!-- THEN IMAGE -->
+                <div style="margin-top:12px; display:flex; justify-content:center;">
+                    <img class="powerbi-shot" src="images/9.png" alt="Blinkit Power BI Dashboard" />
+                </div>
+            </div>
+        </template>
+
+        <template id="tpl-cookingapp">
+            <div data-title="CookingApp" data-meta="Java,Python,Spring Boot,JPA"
+                data-link="https://github.com/nikoo99m/CookingApp">
+                <p>Feature‑rich recipes app focused on Iranian cuisine.</p>
+                <ul>
+                    <li>Filters: cuisine, time, ingredients.</li>
+                    <li>Reviews & star ratings.</li>
+                    <li>Planned: React frontend and authentication.</li>
+                </ul>
+            </div>
+        </template>
+
+        <template id="tpl-oscars">
+            <div data-title="Oscars — Awards Search App" data-meta="Misc"
+                data-link="https://github.com/nikoo99m/Oscars">
+                <p>Search winners/nominees by year, category, and name. Lightweight UI and fast lookups.</p>
+                <ul>
+                    <li>Simple search + filter UX.</li>
+                    <li>Clean data parsing.</li>
+                    <li>Snappy performance.</li>
+                </ul>
+            </div>
+        </template>
+
+        <template id="tpl-scrabble">
+            <div data-title="Scrabble" data-meta="Java" data-link="https://github.com/nikoo99m/Scrabble">
+                <p>Implements rack handling, dictionary checks, and scoring rules.</p>
+                <ul>
+                    <li>Tile values & board bonuses.</li>
+                    <li>Valid move checks.</li>
+                    <li>Clear, testable classes.</li>
+                </ul>
+            </div>
+        </template>
+
+        <template id="tpl-sml">
+            <div data-title="Simple Machine Language Interpreter" data-meta="Java"
+                data-link="https://github.com/nikoo99m/Simple-Machine-Language-processor">
+                <ul>
+                    <li>Lexer + parser.</li>
+                    <li>Step‑through execution.</li>
+                    <li>Clear error messages.</li>
+                </ul>
+            </div>
+        </template>
+
+        <template id="tpl-battleship">
+            <div data-title="Battleship Solver" data-meta="Java,Python"
+                data-link="https://github.com/nikoo99m/BattleshipSolver">
+                <!-- Description FIRST -->
+                <h3>Battleship Solver — Data-Driven AI & Analysis</h3>
+
+                <ul>
+                    <li><strong>Data Collection & Preparation:</strong> Simulated 1,000 Battleship games, capturing move
+                        sequences, outcomes, and board states. Processed and structured data with <strong>NumPy</strong>
+                        and <strong>Pandas</strong> to uncover patterns in player decision-making.</li>
+                    <li><strong>Exploratory Analysis:</strong> Conducted statistical and visual analysis to identify
+                        high-probability move zones and strategic tendencies. Produced visual summaries showing
+                        correlations between board state and win rate.</li>
+                    <li><strong>Predictive Modelling:</strong> Built and trained a <strong>Convolutional Neural Network
+                            (CNN)</strong> in <strong>TensorFlow/Keras</strong> to predict optimal move positions using
+                        supervised learning on gameplay histories.</li>
+                    <li><strong>Results Visualisation:</strong> Generated heatmaps with <strong>Matplotlib</strong> to
+                        visualise AI-predicted move likelihoods. Evaluated model performance using accuracy metrics and
+                        loss curve tracking.</li>
+                    <li><strong>Integration:</strong> Deployed the trained model via a <strong>Flask API</strong> and
+                        integrated with the <strong>Java game engine</strong> via RESTful endpoints for real-time
+                        AI-assisted gameplay.</li>
+                </ul>
+            
+
+                <!-- THEN groups + gallery -->
+                <div class="gallery-groups">
+                    <button class="group-btn active" data-images="images/1.png, images//2.png, images/3.png">dataset
+                        visualisation</button>
+                    <button class="group-btn" data-images="images/4.png">predicted heatmap</button>
+                    <button class="group-btn" data-images="images/5.png,images/6.png, images/7.png">sample of comparisons</button>
+                </div>
+
+                <div class="multi-carousel">
+                    <div class="strip" id="mc-strip"></div>
+                    <div class="nav">
+                        <button class="btn" id="mc-prev" type="button" aria-label="Previous">← Prev</button>
+                        <div class="pager" id="mc-pager">1–3 of N</div>
+                        <button class="btn" id="mc-next" type="button" aria-label="Next">Next →</button>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+
+        <script>
+            const images = ["images/1.png", "images/2.png", "images/3.png", "images/5.png", "images/6.png", "images/7.png"];
+            let currentIndex = 0;
+
+            function showImage(index) {
+                const img = document.getElementById("carousel-image");
+                img.src = images[index];
+            }
+
+            function nextImage() {
+                currentIndex = (currentIndex + 1) % images.length;
+                showImage(currentIndex);
+            }
+
+            function prevImage() {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                showImage(currentIndex);
+            }
+        </script>
+
     </main>
 
     <footer class="container">
@@ -298,25 +628,211 @@
         // Year
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Filtering by skill
+        // Filter by skill
         const skillButtons = document.querySelectorAll('.skill');
         const cards = document.querySelectorAll('[data-tags]');
-
-        function setActive(btn) {
-            skillButtons.forEach(b => b.classList.remove('active')); btn.classList.add('active');
-        }
-
+        function setActive(btn) { skillButtons.forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
         function filter(tag) {
             const t = tag.toLowerCase();
             cards.forEach(card => {
-                const tags = card.getAttribute('data-tags');
+                const tags = card.getAttribute('data-tags') || '';
                 const show = (t === 'all') || tags.toLowerCase().includes(t);
                 card.style.display = show ? '' : 'none';
             });
         }
+        skillButtons.forEach(btn => btn.addEventListener('click', () => { setActive(btn); filter(btn.dataset.skill); }));
 
-        skillButtons.forEach(btn => {
-            btn.addEventListener('click', () => { setActive(btn); filter(btn.dataset.skill); });
+        // Views
+        const listView = document.getElementById('list-view');
+        const detailView = document.getElementById('detail-view');
+        const detailTitle = document.getElementById('detailTitle');
+        const detailIntro = document.getElementById('detailIntro');
+        const detailBody = document.getElementById('detailBody');
+        const detailMeta = document.getElementById('detailMeta');
+        const detailLink = document.getElementById('detailLink');
+
+        const templates = {
+            powerbi: document.getElementById('tpl-powerbi'),
+            cookingapp: document.getElementById('tpl-cookingapp'),
+            oscars: document.getElementById('tpl-oscars'),
+            scrabble: document.getElementById('tpl-scrabble'),
+            sml: document.getElementById('tpl-sml'),
+            battleship: document.getElementById('tpl-battleship')
+        };
+
+        // Carousel initializer (reads data-images)
+        // Shows 3 images at a time (1 on small screens), with group buttons switching albums
+        function initDetailCarousel(node) {
+            const strip = document.querySelector('#detailBody #mc-strip');
+            const prevBtn = document.querySelector('#detailBody #mc-prev');
+            const nextBtn = document.querySelector('#detailBody #mc-next');
+            const pager = document.querySelector('#detailBody #mc-pager');
+            const groupBtns = Array.from(document.querySelectorAll('#detailBody .gallery-groups .group-btn'));
+            if (!strip || !prevBtn || !nextBtn || !pager || groupBtns.length === 0) return;
+
+            // responsive count: 3 on desktop, 1 on small screens
+            const getCount = () => window.matchMedia('(max-width:700px)').matches ? 1 : 3;
+
+            let images = [];
+            let start = 0; // index of first visible image
+            let visibleCount = getCount();
+
+            function render() {
+                visibleCount = getCount();
+                const total = images.length;
+
+                const count = Math.min(visibleCount, total);
+
+                // clamp start so we don't overshoot on resize or short albums
+                start = Math.max(0, Math.min(start, Math.max(0, total - count)));
+
+                strip.innerHTML = '';
+                strip.style.gridTemplateColumns = `repeat(${count || 1}, minmax(220px, 1fr))`;
+                strip.classList.toggle('single', count === 1);
+
+
+                if (!total) {
+                    pager.textContent = '0 of 0';
+                    prevBtn.disabled = nextBtn.disabled = true;
+                    return;
+                }
+
+                for (let k = 0; k < count; k++) {
+                    const idx = start + k;                 // <-- no modulo wrap
+                    const img = document.createElement('img');
+                    img.loading = 'lazy';
+                    img.alt = 'Screenshot';
+                    img.src = images[idx];
+                    strip.appendChild(img);
+                }
+
+                const from = start + 1;
+                const to = start + count;
+                pager.textContent = `${from}–${to} of ${total}`;
+
+                const onePage = total <= count;
+                prevBtn.disabled = nextBtn.disabled = onePage;
+            }
+
+            function next() {
+                const total = images.length;
+                const count = Math.min(visibleCount, total);
+                if (!total || total <= count) return;
+                start = Math.min(start + count, total - count);
+                render();
+            }
+
+            function prev() {
+                const total = images.length;
+                const count = Math.min(visibleCount, total);
+                if (!total || total <= count) return;
+                start = Math.max(start - count, 0);
+                render();
+            }
+
+
+            function next() {
+                if (!images.length) return;
+                start = (start + visibleCount) % images.length;
+                render();
+            }
+            function prev() {
+                if (!images.length) return;
+                start = (start - visibleCount) % images.length;
+                if (start < 0) start += images.length;
+                render();
+            }
+
+            // switch album
+            function loadAlbum(btn) {
+                groupBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                images = (btn.dataset.images || '').split(',').map(s => s.trim()).filter(Boolean);
+                start = 0;
+                render();
+            }
+
+            // events
+            nextBtn.addEventListener('click', next);
+            prevBtn.addEventListener('click', prev);
+            groupBtns.forEach(btn => btn.addEventListener('click', () => loadAlbum(btn)));
+            window.addEventListener('resize', render, { passive: true });
+
+            // init with the active group (or first)
+            loadAlbum(groupBtns.find(b => b.classList.contains('active')) || groupBtns[0]);
+        }
+
+
+        function openProject(key) {
+            const tpl = templates[key];
+            if (!tpl) return;
+            const node = tpl.content.firstElementChild.cloneNode(true);
+
+            // Header
+            detailTitle.textContent = node.dataset.title || 'Project';
+            detailMeta.innerHTML = '';
+            (node.dataset.meta || '').split(',').map(s => s.trim()).filter(Boolean).forEach(tag => {
+                const span = document.createElement('span'); span.className = 'chip'; span.textContent = tag; detailMeta.appendChild(span);
+            });
+
+            // Intro
+            const firstP = node.querySelector('p');
+            detailIntro.textContent = firstP ? firstP.textContent : '';
+
+            // Body (append everything except the FIRST <p>)
+            detailBody.innerHTML = '';
+            const clone = tpl.content.cloneNode(true);
+            const bodyDiv = clone.firstElementChild;
+            if (bodyDiv) {
+                const firstPClone = bodyDiv.querySelector('p');
+                if (firstPClone) firstPClone.remove(); // remove only the intro paragraph
+                Array.from(bodyDiv.children).forEach(el => detailBody.appendChild(el));
+            }
+
+
+            // Link
+            detailLink.href = node.dataset.link || '#';
+
+            // Swap view
+            listView.style.display = 'none';
+            detailView.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'instant' });
+
+            // Init carousel for this project (if any)
+            initDetailCarousel(node);
+
+            // Hash
+            location.hash = `#/${key}`;
+        }
+
+        function backToList() {
+            detailView.style.display = 'none';
+            listView.style.display = 'block';
+            location.hash = '#/';
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+        document.getElementById('backBtn').addEventListener('click', backToList);
+
+        // Open handlers
+        document.querySelectorAll('.open-project').forEach(btn => {
+            btn.addEventListener('click', e => { e.stopPropagation(); openProject(btn.dataset.project); });
+        });
+        document.querySelectorAll('.card.project').forEach(card => {
+            card.addEventListener('click', e => {
+                if (e.target.closest('.open-project')) return;
+                openProject(card.dataset.project);
+            });
+        });
+
+        // Deep link support
+        window.addEventListener('load', () => {
+            const key = (location.hash || '').replace('#/', '').trim();
+            if (key && templates[key]) openProject(key);
+        });
+        window.addEventListener('hashchange', () => {
+            const key = (location.hash || '').replace('#/', '').trim();
+            if (!key) backToList();
+            else if (templates[key]) openProject(key);
         });
     </script>
 </body>
