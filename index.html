@@ -323,6 +323,18 @@
             color: #94a3b8
         }
 
+        /* keep big single screenshots tidy */
+        #detailBody img.powerbi-shot {
+            width: 100%;
+            max-width: 980px;
+            /* cap so it doesn’t dominate */
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #223047;
+            background: #0f172a;
+        }
+
+
         .multi-carousel .btn {
             border: 1px solid #294058;
             background: #0f172a;
@@ -356,15 +368,6 @@
             gap: 10px;
             justify-content: center;
             /* center cells */
-        }
-        #detailBody img.powerbi-shot {
-            width: 100%;
-            max-width: 980px;
-            /* cap so it doesn’t dominate */
-            height: auto;
-            border-radius: 8px;
-            border: 1px solid #223047;
-            background: #0f172a;
         }
 
         .multi-carousel img {
@@ -516,6 +519,8 @@
             </div>
         </template>
 
+
+
         <template id="tpl-cookingapp">
             <div data-title="CookingApp" data-meta="Java,Python,Spring Boot,JPA"
                 data-link="https://github.com/nikoo99m/CookingApp">
@@ -554,6 +559,7 @@
         <template id="tpl-sml">
             <div data-title="Simple Machine Language Interpreter" data-meta="Java"
                 data-link="https://github.com/nikoo99m/Simple-Machine-Language-processor">
+                <p>Parses and executes basic instructions with registers and memory.</p>
                 <ul>
                     <li>Lexer + parser.</li>
                     <li>Step‑through execution.</li>
@@ -585,11 +591,12 @@
                         integrated with the <strong>Java game engine</strong> via RESTful endpoints for real-time
                         AI-assisted gameplay.</li>
                 </ul>
-            
+                <p>Supports both small and large grids, producing solutions quickly. Can run in CLI mode or integrate
+                    with GUI.</p>
 
                 <!-- THEN groups + gallery -->
                 <div class="gallery-groups">
-                    <button class="group-btn active" data-images="images/1.png, images//2.png, images/3.png">dataset
+                    <button class="group-btn active" data-images="images/1.png, images/2.png, images/3.png">dataset
                         visualisation</button>
                     <button class="group-btn" data-images="images/4.png">predicted heatmap</button>
                     <button class="group-btn" data-images="images/5.png,images/6.png, images/7.png">sample of comparisons</button>
@@ -627,6 +634,29 @@
             }
         </script>
 
+
+
+
+        <!-- Battleship with images listed relative to the site -->
+        <!-- <template id="tpl-battleship">
+            <div data-title="Battleship Solver" data-meta="Java,Python"
+                data-link="https://github.com/nikoo99m/BattleshipSolver" data-images="1.png, 4.png">
+                <p>Grid model + placement rules to find valid solutions efficiently.</p>
+                <ul>
+                    <li>Backtracking with pruning.</li>
+                    <li>Row/column ship counts.</li>
+                    <li>No‑adjacent‑ships constraint.</li>
+                </ul>
+                <p>Supports both small and large grids, producing solutions quickly. Can run in CLI mode or integrate
+                    with GUI.</p>
+
+                <div class="carousel">
+                    <button class="carousel-btn prev" type="button" aria-label="Previous image">&#10094;</button>
+                    <img id="carousel-image" src="" alt="Battleship Screenshot" />
+                    <button class="carousel-btn next" type="button" aria-label="Next image">&#10095;</button>
+                </div>
+            </div>
+        </template> -->
     </main>
 
     <footer class="container">
