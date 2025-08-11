@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nikoo Moghadam — Portfolio</title>
+    <meta name="description"
+        content="Portfolio of Nikoo Moghadam —  Data Analyst. Projects, skills, resume, and contact." />
+    <meta name="theme-color" content="#0ea5e9" />
+    <style>
+        :root {
+            --bg: #0b1020;
+            --text: #e5e7eb;
+            --muted: #94a3b8;
+            --card: #111827;
+            --brand: #0ea5e9;
+            --accent: #a78bfa;
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6
+        }
+
+        a {
+            color: var(--brand);
+            text-decoration: none
+        }
+
+        a:hover {
+            text-decoration: underline
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: #0b1020cc;
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #1f2937;
+            z-index: 10
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 18px
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .menu a {
+            margin-left: 14px
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 22px;
+            align-items: center;
+            padding: 28px 0
+        }
+
+        @media (max-width:900px) {
+            .hero {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid #223047;
+            border-radius: var(--radius);
+            padding: 20px
+        }
+
+        h1 {
+            margin: 0 0 6px;
+            font-size: clamp(1.8rem, 4vw, 2.6rem)
+        }
+
+        .kicker {
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #22d3ee;
+            font-weight: 700;
+            font-size: .8rem
+        }
+
+        .skills-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px
+        }
+
+        .skill {
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid #294058;
+            background: #0f172a;
+            cursor: pointer;
+            font-weight: 700
+        }
+
+        .skill.active {
+            background: linear-gradient(135deg, var(--brand), #22d3ee);
+            color: #001b2e;
+            border-color: transparent
+        }
+
+        .section {
+            margin: 26px 0 50px
+        }
+
+        .section h2 {
+            margin: 0 0 10px;
+            font-size: clamp(1.4rem, 3vw, 1.8rem)
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px
+        }
+
+        .col-6 {
+            grid-column: span 6
+        }
+
+        .col-12 {
+            grid-column: span 12
+        }
+
+        @media (max-width:900px) {
+            .col-6 {
+                grid-column: span 12
+            }
+        }
+
+        .project {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            color: var(--muted);
+            font-size: .9rem
+        }
+
+        .chip {
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid #2b3f56
+        }
+
+        .cta {
+            align-self: flex-start;
+            padding: 10px 14px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--brand), #22d3ee);
+            color: #001b2e;
+            font-weight: 800
+        }
+
+        footer {
+            padding: 24px 0;
+            border-top: 1px dashed #2a3a4f;
+            color: var(--muted);
+            margin-top: 30px
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav">
+            <div>
+                <div class="kicker">Portfolio</div>
+                <h1>Nikoo Moghadam</h1>
+                <div class="muted">Data Analyst · London, UK</div>
+            </div>
+
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="card">
+                <div class="kicker">WELCOME!</div>
+                <p>Creating data-driven apps and dashboards. Click a skill to see projects in
+                    <strong> Python, Power
+                        BI, SQL, Java</strong>.</p>
+                <div class="skills-bar" id="skills">
+                    <button class="skill active" data-skill="all">All</button>
+                    <button class="skill" data-skill="java">Java</button>
+                    <button class="skill" data-skill="python">Python</button>
+                    <button class="skill" data-skill="powerbi">Power BI</button>
+                    <button class="skill" data-skill="sql">SQL</button>
+                </div>
+            </div>
+            <aside class="card">
+                <div><strong>Contact</strong></div>
+                <div>Email: <a href="mailto:nikooo.m99@gmail.com">nikooo.m99@gmail.com</a></div>
+                <div>GitHub: <a href="https://github.com/nikoo99m" target="_blank">nikoo99m</a></div>
+                <div>LinkedIn: <a href="https://www.linkedin.com/in/nikoo-moghadam-5ab529306/"
+                        target="_blank">LinkedIn</a>
+                </div>
+            </aside>
+        </section>
+
+        <section id="projects" class="section">
+            <h2>Projects</h2>
+            <div class="projects">
+                <!-- Power BI -->
+                <article class="card project col-6" data-tags="powerbi">
+                    <h3>Interactive Power BI Dashboard</h3>
+                    <p>Live KPI dashboard with slicers & drill‑through. Published to Power BI Service.</p>
+                    <div class="meta"><span class="chip">Power BI</span><span class="chip">DAX</span></div>
+                    <a class="cta" href="POWERBI_PUBLISH_LINK" target="_blank">Open live report</a>
+                </article>
+
+                <!-- Java -->
+                <article class="card project col-6" data-tags="java frontend">
+                    <h3>CookingApp</h3>
+                    <p>Recipe filters, reviews, ratings; React UI planned; clean domain model with JPA.</p>
+                    <div class="meta"><span class="chip">Java</span><span class="chip">Spring Boot</span><span
+                            class="chip">JPA</span></div>
+                    <a class="cta" href="https://github.com/nikoo99m/CookingApp" target="_blank">Code on GitHub</a>
+                </article>
+
+
+
+                <!-- Extra repos from your GitHub -->
+                <article class="card project col-6" data-tags="misc">
+                    <h3>Oscars — Awards Search App</h3>
+                    <p>Explore Oscar data with search and filters.</p>
+                    <div class="meta">
+                        <span class="chip">Misc</span>
+                    </div>
+                    <a class="cta" href="https://github.com/nikoo99m/Oscars" target="_blank">Code on GitHub</a>
+                </article>
+
+
+
+                <article class="card project col-6" data-tags="java">
+                    <h3>Scrabble</h3>
+                    <p>Scrabble word logic and scoring.</p>
+                    <div class="meta"><span class="chip">Java</span></div>
+                    <a class="cta" href="https://github.com/nikoo99m/Scrabble" target="_blank">Code on GitHub</a>
+                </article>
+
+                <article class="card project col-6" data-tags="java">
+                    <h3>Simple Machine Language Interpreter</h3>
+                    <p>Educational interpreter for a simple machine language.</p>
+                    <div class="meta"><span class="chip">Java</span></div>
+                    <a class="cta" href="https://github.com/nikoo99m/Simple-Machine-Language-processor"
+                        target="_blank">Code on GitHub</a>
+                </article>
+
+
+                <article class="card project col-6" data-tags="java python">
+                    <h3>Battleship Solver</h3>
+                    <p>Solver for Battleship puzzles.</p>
+                    <div class="meta">
+                        <span class="chip">Java</span>
+                        <span class="chip">Python</span>
+                    </div>
+                    <a class="cta" href="https://github.com/nikoo99m/BattleshipSolver" target="_blank">Code on
+                        GitHub</a>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <div>© <span id="year"></span> Nikoo Moghadam — Built with HTML/CSS, hosted on GitHub Pages</div>
+    </footer>
+
+    <script>
+        // Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Filtering by skill
+        const skillButtons = document.querySelectorAll('.skill');
+        const cards = document.querySelectorAll('[data-tags]');
+
+        function setActive(btn) {
+            skillButtons.forEach(b => b.classList.remove('active')); btn.classList.add('active');
+        }
+
+        function filter(tag) {
+            const t = tag.toLowerCase();
+            cards.forEach(card => {
+                const tags = card.getAttribute('data-tags');
+                const show = (t === 'all') || tags.toLowerCase().includes(t);
+                card.style.display = show ? '' : 'none';
+            });
+        }
+
+        skillButtons.forEach(btn => {
+            btn.addEventListener('click', () => { setActive(btn); filter(btn.dataset.skill); });
+        });
+    </script>
+</body>
+
+</html>
