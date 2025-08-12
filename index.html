@@ -389,6 +389,21 @@
             /* a single centered column */
             justify-items: center;
         }
+
+        .viz-wrap {
+            margin: 12px 0;
+            border: 1px solid #223047;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #0f172a;
+        }
+
+        .viz-wrap iframe {
+            width: 100%;
+            height: 720px;
+            /* tweak if you want it taller/shorter */
+            border: 0;
+        }
     </style>
 </head>
 
@@ -417,6 +432,7 @@
                         <button class="skill active" data-skill="all">All</button>
                         <button class="skill" data-skill="java">Java</button>
                         <button class="skill" data-skill="python">Python</button>
+                        <button class="skill" data-skill="tableau">Tableau</button>
                         <button class="skill" data-skill="powerbi">Power BI</button>
                         <button class="skill" data-skill="sql">SQL</button>
                     </div>
@@ -433,7 +449,7 @@
                 <h2>Projects</h2>
                 <div class="projects">
                     <article class="card project col-6" data-project="powerbi" data-tags="powerbi">
-                        <h3>Interactive Power BI Dashboard</h3>
+                        <h3>Power BI Dashboard</h3>
                         <p>Live KPI dashboard with slicers & drill‑through.</p>
                         <div class="meta"><span class="chip">Power BI</span><span class="chip">DAX</span></div>
                         <button class="cta open-project" data-project="powerbi">Open</button>
@@ -460,6 +476,13 @@
                         <div class="meta"><span class="chip">Java</span></div>
                         <button class="cta open-project" data-project="scrabble">Open</button>
                     </article>
+                    <article class="card project col-6" data-project="britishreview" data-tags="tableau">
+                        <h3>Interactive British Airways Review Dashboard</h3>
+                        <p>Exploratory Tableau dashboard with filters, highlights, and drill-downs.</p>
+                        <div class="meta"><span class="chip">Tableau</span></div>
+                        <button class="cta open-project" data-project="britishreview">Open</button>
+                    </article>
+
 
                     <article class="card project col-6" data-project="sml" data-tags="java">
                         <h3>Simple Machine Language Interpreter</h3>
@@ -496,21 +519,48 @@
 
         <!-- ====== HIDDEN TEMPLATES ====== -->
         <template id="tpl-powerbi">
-            <div data-title="Power BI — Blinkit Sales & Performance Dashboard" data-meta="Power BI,DAX,Data Modeling">
-                <!-- This first <p> becomes the small intro at the top -->
+            <div data-title="Blinkit Sales & Performance dashboard (Static Preview)"
+                data-meta="Power BI,DAX,Data Modeling" data-link="#">
+                <!-- 1) DESCRIPTION (first <p> becomes the intro) -->
+                <p>
+                    Static preview of a Power BI report that consolidates Blinkit retail performance across outlet
+                    location tiers,
+                    outlet sizes, and item types. The page highlights key figures,<strong>Total Sales: $1.14M</strong>,
+                    <strong>Average Sales: $141</strong>, <strong>Items: 8,095</strong>, and <strong>Average Rating:
+                        3.9</strong>
+                    and illustrates the analyses available in the full report.
+                </p>
 
-                <!-- DESCRIPTION FIRST -->
-                <ul>
-                    <li><strong>Data Preparation:</strong> Cleaned and transformed sales, outlet, and product tables in
-                        <strong>Power Query</strong>; standardised dates/currency and created calculated columns.
-                    </li>
-                    <li><strong>KPI Cards:</strong> Total Sales (<strong>$1.14M</strong>), Avg Sales
-                        (<strong>$141</strong>), Items (<strong>8095</strong>), Avg Rating (<strong>3.9</strong>).</li>
+                <!-- 2) DETAILS (no live link, since this preview is not interactive) -->
 
-                </ul>
-                <p><strong>Outcome:</strong> This dashboard enables quick identification of high-performing products,
-                    outlet types, and locations, providing actionable insights to optimize product placement, marketing
-                    focus, and inventory strategy.</p>
+                <li><strong>Purpose &amp; objectives:</strong>
+                    <ul>
+                        <li>Provide a single, consistent view of retail performance across outlet and product
+                            dimensions.</li>
+                        <li>Enable rapid identification of growth drivers and underperforming segments via a KPI → trend
+                            → composition → ranking flow.</li>
+                        <li>Support assortment, pricing, promotion, and store-operations decisions using transparent DAX
+                            measures.</li>
+                        <li>Standardise weekly reviews with shared metric definitions (Total Sales, Avg Sales, Items,
+                            Avg Rating, Visibility).</li>
+                    </ul>
+                </li>
+
+                <li><strong>Decision-support applications:</strong>
+                    <ul>
+                        <li><em>Category management:</em> Rank item types by revenue to optimise assortment and
+                            promotional spend.</li>
+                        <li><em>Store operations:</em> Contrast outlet size and location tier to guide staffing and
+                            space allocation.</li>
+                        <li><em>Pricing &amp; promotions:</em> Use average sales and volume movement to target elastic
+                            categories and measure lift.</li>
+                        <li><em>Customer experience:</em> Cross-check average rating with sales to prioritise
+                            quality/service fixes with highest impact.</li>
+                        <li><em>Expansion planning:</em> Pair establishment trends with tier performance to inform site
+                            selection.</li>
+                    </ul>
+                </li>
+
 
                 <!-- THEN IMAGE -->
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -518,8 +568,102 @@
                 </div>
             </div>
         </template>
+        <template id="tpl-britishreview">
+            <div data-title="Interactive British Airways Review Dashboard" data-meta="Tableau" data-link="#">
+                <!-- 1) DESCRIPTION (first <p> becomes the intro at the top) -->
+                <p>
+                    This dashboard presents an analysis of British Airways customer reviews sourced from a public
+                    dataset. It surfaces core experience indicators, Overall Rating, Cabin Staff Service, Entertainment,
+                    Food & Beverages, Ground Service, Seat Comfort, and Value for Money and provides interactive filters
+                    by month, country, aircraft type, traveller type, and seat class to support rapid identification of
+                    performance patterns and outliers.
+                </p>
+
+                <!-- 3) BULLETS (formal) -->
+                <ul style="margin-top:12px;">
+                    <li><strong>Overview:</strong> KPI cards summarise current performance; a monthly trend visualises
+                        temporal variation in Entertainment; a country view localises differences; and aircraft-level
+                        bar charts benchmark performance alongside review volumes.</li>
 
 
+                    <li><strong>Purpose &amp; objectives:</strong>
+                        <ul>
+                            <li>Demonstrate an end-to-end Tableau analytics workflow, including data preparation,
+                                calculations, parameters, actions, and dashboard composition.</li>
+                            <li>Provide a decision-support view for customer-experience leaders to monitor KPIs and
+                                localise issues by route, fleet, traveller type, and seat class.</li>
+                            <li>Deliver a reusable dashboard pattern (“KPI → trend → geography → entity comparison”)
+                                applicable to other review datasets.</li>
+                        </ul>
+                    </li>
+
+                    <li><strong>Decision-support applications:</strong>
+                        <ul>
+                            <li><em>For airline teams:</em>
+                                <ul>
+                                    <li><strong>Route &amp; station management:</strong> Identify countries/routes with
+                                        lower Ground Service or Overall Rating and prioritise targeted service-recovery
+                                        actions with local stations.</li>
+                                    <li><strong>Fleet &amp; product planning:</strong> Use aircraft comparisons to flag
+                                        types with consistently lower Entertainment or Seat Comfort for IFE upgrades,
+                                        seating refresh, or configuration changes.</li>
+                                    <li><strong>Cabin crew development:</strong> Track Cabin Staff Service by traveller
+                                        type/seat class to focus coaching where the impact on satisfaction is highest.
+                                    </li>
+                                    <li><strong>Marketing &amp; loyalty:</strong> Highlight high-performing
+                                        routes/aircraft in campaigns; pair improvements on weaker segments with targeted
+                                        offers to measure uplift.</li>
+                                    <li><strong>Resource allocation:</strong> Combine KPI gaps with review volumes to
+                                        prioritise fixes that affect the greatest number of customers first.</li>
+                                </ul>
+                            </li>
+                            <li><em>For travellers:</em>
+                                <ul>
+                                    <li><strong>Booking choices:</strong> Compare historical satisfaction by
+                                        country/route and aircraft type to inform flight selection.</li>
+                                    <li><strong>Seat class decisions:</strong> Review differences across
+                                        Economy/Business to assess whether an upgrade aligns with the experience you
+                                        value.</li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+                    <li><strong>Usage guidance:</strong> Select a KPI and time window, then compare countries and
+                        aircraft types. Use filters to determine whether outliers are route-specific, fleet-specific, or
+                        seasonal; prioritise actions where KPI gaps coincide with higher review volumes.</li>
+                </ul>
+
+                <p><a href="https://public.tableau.com/app/profile/nikoo.moghadam/viz/shared/JM3MDMJF7" target="_blank"
+                        rel="noopener">View
+                        Live Interactive Dashboard</a></p>
+
+                <div style="margin-top:12px; display:flex; justify-content:center;">
+                    <img src="images/11.png" alt="Interactive British Review Dashboard Screenshot"
+                        style="max-width:100%; border-radius:8px; border:1px solid #223047; background:#0f172a;">
+                </div>
+
+                <li><strong>Observed trends (current snapshot):</strong>
+                    <ul>
+                        <li><em>Seasonality:</em> Entertainment scores exhibit noticeable volatility around the
+                            pandemic period, followed by gradual stabilisation.</li>
+                        <li><em>Geography:</em> Country-level results reveal clusters of relatively higher and lower
+                            satisfaction, indicating where route-level follow-up may be warranted.</li>
+                        <li><em>Aircraft type:</em> Long-haul aircraft (e.g., A380, B747-400) tend to score higher
+                            on Entertainment than some short-haul types (e.g., A319/A321), suggesting product or
+                            feature differentiation by fleet.</li>
+                        <li><em>Customer segments:</em> Results frequently differ by traveller type and seat class;
+                            for example, Business Class may prioritise cabin service and meals, while Economy may
+                            emphasise value for money.</li>
+                    </ul>
+                </li>
+
+
+            </div>
+        </template>
 
         <template id="tpl-cookingapp">
             <div data-title="CookingApp" data-meta="Java,Python,Spring Boot,JPA"
@@ -599,7 +743,8 @@
                     <button class="group-btn active" data-images="images/1.png, images/2.png, images/3.png">dataset
                         visualisation</button>
                     <button class="group-btn" data-images="images/4.png">predicted heatmap</button>
-                    <button class="group-btn" data-images="images/5.png,images/6.png, images/7.png">sample of comparisons</button>
+                    <button class="group-btn" data-images="images/5.png,images/6.png, images/7.png">sample of
+                        comparisons</button>
                 </div>
 
                 <div class="multi-carousel">
@@ -693,6 +838,7 @@
         const templates = {
             powerbi: document.getElementById('tpl-powerbi'),
             cookingapp: document.getElementById('tpl-cookingapp'),
+            britishreview: document.getElementById('tpl-britishreview'),
             oscars: document.getElementById('tpl-oscars'),
             scrabble: document.getElementById('tpl-scrabble'),
             sml: document.getElementById('tpl-sml'),
