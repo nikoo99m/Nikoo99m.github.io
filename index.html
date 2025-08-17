@@ -469,6 +469,16 @@
                         <div class="meta"><span class="chip">Misc</span></div>
                         <button class="cta open-project" data-project="oscars">Open</button>
                     </article>
+                    <article class="card project col-6" data-project="sqlwarehouse" data-tags="sql">
+                        <h3>SQL Data Warehouse</h3>
+                        <p>Bronze → Silver → Gold warehouse with ETL, quality checks, and analytics-ready tables.</p>
+                        <div class="meta">
+                            <span class="chip">SQL</span><span class="chip">ETL</span><span class="chip">Data
+                                Warehousing</span>
+                        </div>
+                        <button class="cta open-project" data-project="sqlwarehouse">Open</button>
+                    </article>
+
 
                     <article class="card project col-6" data-project="scrabble" data-tags="java">
                         <h3>Scrabble</h3>
@@ -568,6 +578,52 @@
                 </div>
             </div>
         </template>
+        <template id="tpl-sqlwarehouse">
+            <div data-title="SQL Data Warehouse Project" data-meta="SQL,ETL,Data Modeling,Data Warehousing"
+                data-link="https://github.com/nikoo99m/SQL-Data-Warehouse-Project">
+                <!-- Intro (first <p> becomes the top intro) -->
+                <p>
+                    Built a modern data warehouse using SQL Server, covering ETL processes, data modeling, and
+                    analytics.
+                    The project follows a layered architecture (<strong>Bronze → Silver → Gold</strong>) to ensure clean
+                    and reliable data pipelines.
+                </p>
+
+                <h3>Key Components & Features</h3>
+                <ul>
+                    <li><strong>Data Ingestion (ETL):</strong> Extracted raw datasets, applied cleaning rules, and
+                        loaded them into the <strong>Bronze layer</strong>.</li>
+                    <li><strong>Data Modeling:</strong> Designed star-schema style tables and relationships to optimise
+                        queries and reporting.</li>
+                    <li><strong>Transformations (Silver Layer):</strong> Standardised and validated data using SQL
+                        scripts to enforce quality checks.</li>
+                    <li><strong>Analytics Layer (Gold):</strong> Created aggregated and business-focused tables for
+                        reporting and dashboards.</li>
+                    <li><strong>Data Quality Checks:</strong> Implemented validation queries to detect duplicates,
+                        missing values, and anomalies.</li>
+                    <li><strong>Testing & Documentation:</strong> Added SQL scripts and documentation for
+                        reproducibility and maintainability.</li>
+                </ul>
+
+                <h3>Impact & Purpose</h3>
+                <ul>
+                    <li>Showcases end-to-end data engineering skills: ingestion, transformation, modeling, and
+                        analytics.</li>
+                    <li>Provides a foundation for integrating tools like <strong>Power BI</strong> or
+                        <strong>Tableau</strong> to visualise insights.</li>
+                </ul>
+
+
+                <!-- Optional image (add your screenshot to images/warehouse.png) -->
+                <div style="margin-top:12px; display:flex; justify-content:center;">
+                    <img src="C:\Users\Diamond\Desktop\portfolio\images\Untitled Diagram.drawio (13).png"
+                        alt="Bronze → Silver → Gold data warehouse diagram"
+                        style="max-width:100%; border-radius:8px; border:1px solid #223047; background:#0f172a;">
+                </div>
+            </div>
+        </template>
+
+
         <template id="tpl-britishreview">
             <div data-title="Interactive British Airways Review Dashboard" data-meta="Tableau" data-link="#">
                 <!-- 1) DESCRIPTION (first <p> becomes the intro at the top) -->
@@ -842,7 +898,8 @@
             oscars: document.getElementById('tpl-oscars'),
             scrabble: document.getElementById('tpl-scrabble'),
             sml: document.getElementById('tpl-sml'),
-            battleship: document.getElementById('tpl-battleship')
+            battleship: document.getElementById('tpl-battleship'),
+            sqlwarehouse: document.getElementById('tpl-sqlwarehouse')
         };
 
         // Carousel initializer (reads data-images)
