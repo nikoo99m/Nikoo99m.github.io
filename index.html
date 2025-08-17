@@ -455,7 +455,7 @@
                         <button class="cta open-project" data-project="powerbi">Open</button>
                     </article>
 
-                    <article class="card project col-6" data-project="cookingapp" data-tags="java python">
+                    <article class="card project col-6" data-project="cookingapp" data-tags="java">
                         <h3>CookingApp</h3>
                         <p>Recipe filters, reviews, ratings; React UI planned.</p>
                         <div class="meta"><span class="chip">Java</span><span class="chip">Python</span><span
@@ -463,12 +463,7 @@
                         <button class="cta open-project" data-project="cookingapp">Open</button>
                     </article>
 
-                    <article class="card project col-6" data-project="oscars" data-tags="misc">
-                        <h3>Oscars — Awards Search App</h3>
-                        <p>Explore Oscar data with search and filters.</p>
-                        <div class="meta"><span class="chip">Misc</span></div>
-                        <button class="cta open-project" data-project="oscars">Open</button>
-                    </article>
+
                     <article class="card project col-6" data-project="sqlwarehouse" data-tags="sql">
                         <h3>SQL Data Warehouse</h3>
                         <p>Bronze → Silver → Gold warehouse with ETL, quality checks, and analytics-ready tables.</p>
@@ -610,14 +605,14 @@
                     <li>Showcases end-to-end data engineering skills: ingestion, transformation, modeling, and
                         analytics.</li>
                     <li>Provides a foundation for integrating tools like <strong>Power BI</strong> or
-                        <strong>Tableau</strong> to visualise insights.</li>
+                        <strong>Tableau</strong> to visualise insights.
+                    </li>
                 </ul>
 
 
                 <!-- Optional image (add your screenshot to images/warehouse.png) -->
                 <div style="margin-top:12px; display:flex; justify-content:center;">
-                    <img src="images\12.png"
-                        alt="Bronze → Silver → Gold data warehouse diagram"
+                    <img src="images\12.png" alt="Bronze → Silver → Gold data warehouse diagram"
                         style="max-width:100%; border-radius:8px; border:1px solid #223047; background:#0f172a;">
                 </div>
             </div>
@@ -722,50 +717,150 @@
         </template>
 
         <template id="tpl-cookingapp">
-            <div data-title="CookingApp" data-meta="Java,Python,Spring Boot,JPA"
-                data-link="https://github.com/nikoo99m/CookingApp">
-                <p>Feature‑rich recipes app focused on Iranian cuisine.</p>
+            <div data-title="Yummy — CookingApp" data-meta="Java,Spring Boot,SQL,PostgreSQL,Docker,REST API,HTML,CSS"
+                data-link="https://github.com/nikoo99m/Yummy-web-application">
+
+                <!-- Intro (first <p> is the short preview) -->
+                <p>
+                    Yummy is a web application designed for food lovers who want to explore and cook delicious meals
+                    with ease. 🍛✨
+                </p>
+
+                <!-- Tech stack -->
+                <h3>Tech Stack</h3>
                 <ul>
-                    <li>Filters: cuisine, time, ingredients.</li>
-                    <li>Reviews & star ratings.</li>
-                    <li>Planned: React frontend and authentication.</li>
+                    <li><strong>Java</strong> (Maven, Spring Boot)</li>
+                    <li><strong>RESTful API</strong> — modular microservices with Spring Boot for seamless interactions
+                    </li>
+                    <li><strong>PostgreSQL & SQL</strong> — structured data storage for recipes, users, and reviews</li>
+                    <li><strong>Docker</strong> — containerized services for consistent deployment</li>
+                    <li><strong>JSON</strong> — lightweight data exchange</li>
+                    <li><strong>HTML & CSS</strong> — frontend interface design</li>
                 </ul>
-            </div>
+
+                <!-- Features -->
+                <h3>Features</h3>
+                <ul>
+                    <li>🥘 <strong>Discover Iranian Cuisine</strong> — Dive into the rich flavours of special dishes
+                        from Iran, with detailed recipes.</li>
+                    <li>🔍 <strong>Advanced Search & Filters</strong> — Find recipes by title, cuisine type,
+                        ingredients, cooking time, and more.</li>
+
+                    <li>⭐ <strong>Perfect UX/UI</strong> — A beautiful, user-friendly interface for a smooth cooking
+                        experience.</li>
+                </ul>
+                <h3>Impact & Purpose</h3>
+                <ul>
+                    <li>Showcases <strong>full-stack development skills</strong> with Java, Spring Boot, SQL, and
+                        Docker.</li>
+                    <li>Highlights ability to design <strong>REST APIs & microservices</strong> for scalable
+                        applications.</li>
+                    <li>Blends technology with <strong>culture</strong>, creating a food platform that’s both functional
+                        and inspiring.</li>
+                </ul>
         </template>
 
-        <template id="tpl-oscars">
-            <div data-title="Oscars — Awards Search App" data-meta="Misc"
-                data-link="https://github.com/nikoo99m/Oscars">
-                <p>Search winners/nominees by year, category, and name. Lightweight UI and fast lookups.</p>
-                <ul>
-                    <li>Simple search + filter UX.</li>
-                    <li>Clean data parsing.</li>
-                    <li>Snappy performance.</li>
-                </ul>
-            </div>
-        </template>
+        <!-- Impact -->
+
+
+
 
         <template id="tpl-scrabble">
-            <div data-title="Scrabble" data-meta="Java" data-link="https://github.com/nikoo99m/Scrabble">
-                <p>Implements rack handling, dictionary checks, and scoring rules.</p>
+            <div data-title="Scrabble — OOP Word Game" data-meta="Java,OOP,Algorithms"
+                data-link="https://github.com/nikoo99m/Scrabble">
+
+                <!-- Intro (first <p> shows at the top) -->
+                <p>
+                    A full Scrabble game where users can play against a computer or another player. Built in
+                    Java with clean
+                    Object-Oriented design (Player, Board, Tile, Score, Game) for modularity, testability, and
+                    future extensions.
+                </p>
+
+                <h3>Gameplay</h3>
                 <ul>
-                    <li>Tile values & board bonuses.</li>
-                    <li>Valid move checks.</li>
-                    <li>Clear, testable classes.</li>
+                    <li><strong>Modes:</strong> Human vs Human, Human vs Computer.</li>
+                    <li><strong>Rules:</strong> Standard Scrabble placement rules with contiguous words and
+                        cross checks.</li>
+                    <li><strong>Scoring:</strong> Letter values, double/triple letter & word bonuses, turn
+                        totals, and running scores.</li>
+                    <li><strong>Validation:</strong> Each move is validated against the existing board and
+                        dictionary lookups.</li>
                 </ul>
-            </div>
+
+                <h3>Architecture (OOP)</h3>
+                <ul>
+                    <li><strong>Game:</strong> Orchestrates turns, enforces rules, end-game detection (tile bag
+                        empty, no moves).</li>
+                    <li><strong>Board:</strong> 15×15 grid, bonus layout, word and cross-word extraction for
+                        validation/scoring.</li>
+                    <li><strong>Tile:</strong> Letter + value; immutable objects with clear equality semantics.
+                    </li>
+                    <li><strong>Player:</strong> Rack management (draw, exchange), move submission, score
+                        tracking.</li>
+                    <li><strong>Score:</strong> Scoring utilities for base points + board multipliers, turn
+                        summaries.</li>
+                    <li><strong>AI (Computer):</strong> Move generator that evaluates candidate placements using
+                        heuristics.</li>
+                </ul>
+
+
+                <h3>Skills Demonstrated</h3>
+                <ul>
+                    <li>Problem Solving · Object-Oriented Programming (OOP) · Java · Algorithm design &
+                        validation</li>
+                </ul>
         </template>
 
+
         <template id="tpl-sml">
-            <div data-title="Simple Machine Language Interpreter" data-meta="Java"
+            <div data-title="Simple Machine Language Interpreter" data-meta="Java,OOP,Design Patterns,Testing"
                 data-link="https://github.com/nikoo99m/Simple-Machine-Language-processor">
-                <p>Parses and executes basic instructions with registers and memory.</p>
+
+                <!-- Intro -->
+                <p>
+                    A Java-based interpreter for a simplified assembly-like language. Implements parsing, execution, and
+                    debugging
+                    of instructions, with extensible design patterns for flexibility and maintainability.
+                </p>
+
+                <!-- Tech stack -->
+                <h3>Tech Stack</h3>
                 <ul>
-                    <li>Lexer + parser.</li>
-                    <li>Step‑through execution.</li>
-                    <li>Clear error messages.</li>
+                    <li><strong>Java (Maven)</strong> — project build and dependency management.</li>
+                    <li><strong>Design Patterns</strong> — Singleton, Reflection API, Dependency Injection, Factory
+                        Class.</li>
+                    <li><strong>JUnit & Mockito</strong> — unit tests and mocking for reliable, test-driven development.
+                    </li>
                 </ul>
-            </div>
+
+                <!-- Features -->
+                <h3>Core Features</h3>
+                <ul>
+                    <li><strong>Lexer & Parser:</strong> Reads and tokenises SML programs into executable instructions.
+                    </li>
+                    <li><strong>Instruction Set:</strong> Supports load, store, arithmetic, branch, and print
+                        operations.</li>
+                    <li><strong>Execution Engine:</strong> Processes instructions against registers and memory with
+                        clear error handling.</li>
+                    <li><strong>Extensibility:</strong> New instructions can be added dynamically via Reflection and
+                        Factory classes without modifying existing code.</li>
+                    <li><strong>Dependency Injection:</strong> Decouples components (Parser, Executor, Memory) for
+                        testability and maintainability.</li>
+                    <li><strong>Testing Suite:</strong> Comprehensive JUnit tests cover parsing, execution logic, and
+                        error handling.</li>
+                </ul>
+
+                <!-- Impact -->
+                <h3>Impact & Purpose</h3>
+                <ul>
+                    <li>Demonstrates ability to design <strong>modular, extensible systems</strong> using OOP and design
+                        patterns.</li>
+                    <li>Highlights <strong>software engineering best practices</strong> including TDD, dependency
+                        management, and clean architecture.</li>
+                    <li>Provides an educational tool for understanding <strong>low-level instruction execution</strong>
+                        and <strong>compiler/interpreter design</strong>.</li>
+                </ul>
         </template>
 
         <template id="tpl-battleship">
@@ -775,23 +870,41 @@
                 <h3>Battleship Solver — Data-Driven AI & Analysis</h3>
 
                 <ul>
-                    <li><strong>Data Collection & Preparation:</strong> Simulated 1,000 Battleship games, capturing move
-                        sequences, outcomes, and board states. Processed and structured data with <strong>NumPy</strong>
-                        and <strong>Pandas</strong> to uncover patterns in player decision-making.</li>
-                    <li><strong>Exploratory Analysis:</strong> Conducted statistical and visual analysis to identify
-                        high-probability move zones and strategic tendencies. Produced visual summaries showing
+                    <li><strong>Data Collection & Preparation:</strong> Simulated 1,000 Battleship
+                        games,
+                        capturing move
+                        sequences, outcomes, and board states. Processed and structured data with
+                        <strong>NumPy</strong>
+                        and <strong>Pandas</strong> to uncover patterns in player decision-making.
+                    </li>
+                    <li><strong>Exploratory Analysis:</strong> Conducted statistical and visual analysis
+                        to
+                        identify
+                        high-probability move zones and strategic tendencies. Produced visual summaries
+                        showing
                         correlations between board state and win rate.</li>
-                    <li><strong>Predictive Modelling:</strong> Built and trained a <strong>Convolutional Neural Network
-                            (CNN)</strong> in <strong>TensorFlow/Keras</strong> to predict optimal move positions using
+                    <li><strong>Predictive Modelling:</strong> Built and trained a <strong>Convolutional
+                            Neural
+                            Network
+                            (CNN)</strong> in <strong>TensorFlow/Keras</strong> to predict optimal move
+                        positions using
                         supervised learning on gameplay histories.</li>
-                    <li><strong>Results Visualisation:</strong> Generated heatmaps with <strong>Matplotlib</strong> to
-                        visualise AI-predicted move likelihoods. Evaluated model performance using accuracy metrics and
-                        loss curve tracking.</li>
-                    <li><strong>Integration:</strong> Deployed the trained model via a <strong>Flask API</strong> and
-                        integrated with the <strong>Java game engine</strong> via RESTful endpoints for real-time
+                    <li><strong>Results Visualisation:</strong> Generated heatmaps with
+                        <strong>Matplotlib</strong> to
+                        visualise AI-predicted move likelihoods. Evaluated model performance using
+                        accuracy
+                        metrics and
+                        loss curve tracking.
+                    </li>
+                    <li><strong>Integration:</strong> Deployed the trained model via a <strong>Flask
+                            API</strong> and
+                        integrated with the <strong>Java game engine</strong> via RESTful endpoints for
+                        real-time
                         AI-assisted gameplay.</li>
                 </ul>
-                <p>Supports both small and large grids, producing solutions quickly. Can run in CLI mode or integrate
+                <p>Supports both small and large grids, producing solutions quickly. Can run in CLI mode
+                    or
+                    integrate
                     with GUI.</p>
 
                 <!-- THEN groups + gallery -->
@@ -806,7 +919,8 @@
                 <div class="multi-carousel">
                     <div class="strip" id="mc-strip"></div>
                     <div class="nav">
-                        <button class="btn" id="mc-prev" type="button" aria-label="Previous">← Prev</button>
+                        <button class="btn" id="mc-prev" type="button" aria-label="Previous">←
+                            Prev</button>
                         <div class="pager" id="mc-pager">1–3 of N</div>
                         <button class="btn" id="mc-next" type="button" aria-label="Next">Next →</button>
                     </div>
@@ -895,7 +1009,6 @@
             powerbi: document.getElementById('tpl-powerbi'),
             cookingapp: document.getElementById('tpl-cookingapp'),
             britishreview: document.getElementById('tpl-britishreview'),
-            oscars: document.getElementById('tpl-oscars'),
             scrabble: document.getElementById('tpl-scrabble'),
             sml: document.getElementById('tpl-sml'),
             battleship: document.getElementById('tpl-battleship'),
