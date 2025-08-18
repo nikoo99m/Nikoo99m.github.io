@@ -12,10 +12,26 @@
             --bg: #0b1020;
             --text: #e5e7eb;
             --muted: #94a3b8;
-            --card: #111827;
-            --brand: #0ea5e9;
+            --card: #0f172a;
+            --brand: #22d3ee;
+            /* cyan */
             --accent: #a78bfa;
+            /* purple */
             --radius: 16px;
+
+            /* gradients */
+            --grad-hero: linear-gradient(135deg, #0ea5e933, #8b5cf633);
+            --grad-cta: linear-gradient(135deg, #f59e0b, #ef4444);
+            --grad-card: linear-gradient(135deg, #10b98133, #3b82f633);
+        }
+
+        :root.light {
+            --bg: #f8fafc;
+            --text: #0b1020;
+            --muted: #475569;
+            --card: #ffffff;
+            --grad-hero: linear-gradient(135deg, #0ea5e91f, #8b5cf61f);
+            --grad-card: linear-gradient(135deg, #10b98122, #3b82f622);
         }
 
         * {
@@ -27,16 +43,53 @@
             font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.6
+            line-height: 1.6;
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            z-index: -2;
+            pointer-events: none;
+            width: 60vmax;
+            height: 60vmax;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: .13;
+        }
+
+        body::before {
+            background: #22d3ee;
+            left: -20vmax;
+            top: -30vmax;
+        }
+
+        body::after {
+            background: #8b5cf6;
+            right: -25vmax;
+            bottom: -35vmax;
         }
 
         a {
             color: var(--brand);
-            text-decoration: none
+            background-image: linear-gradient(90deg, var(--brand), var(--accent));
+            background-size: 0% 2px;
+            background-repeat: no-repeat;
+            background-position: 0 100%;
+            transition: background-size .2s ease;
+            text-decoration: none;
         }
 
         a:hover {
-            text-decoration: underline
+            background-size: 100% 2px;
+            text-decoration: none;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #22d3ee;
+            outline-offset: 2px;
         }
 
         header {
@@ -45,7 +98,8 @@
             background: #0b1020cc;
             backdrop-filter: blur(8px);
             border-bottom: 1px solid #1f2937;
-            z-index: 10
+            z-index: 10;
+            box-shadow: 0 6px 24px #0ea5e90a;
         }
 
         .container {
@@ -75,10 +129,59 @@
         }
 
         .card {
+            position: relative;
             background: var(--card);
             border: 1px solid #223047;
             border-radius: var(--radius);
-            padding: 20px
+            padding: 20px;
+        }
+
+        /* colourful backgrounds for project cards (buttons unchanged) */
+        .card.project {
+            background: var(--card);
+            border: 1px solid #223047;
+            border-radius: var(--radius);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card.project::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    rgba(34, 211, 238, 0.12),
+                    /* cyan */
+                    rgba(139, 92, 246, 0.12),
+                    /* violet */
+                    rgba(16, 185, 129, 0.12)
+                    /* emerald */
+                );
+            opacity: 1;
+            transition: opacity .3s ease;
+            z-index: 0;
+        }
+
+        .card.project:hover::before {
+            opacity: 0.35;
+        }
+
+        .card.project:hover {
+            transform: translateY(-2px);
+            transition: transform .2s ease;
+        }
+
+        .card.project>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .card {
+            background:
+                radial-gradient(1000px 300px at -10% -40%, #22d3ee11, transparent 60%),
+                radial-gradient(1000px 300px at 120% 140%, #8b5cf611, transparent 60%),
+                var(--card);
+            border: 1px solid #223047;
         }
 
         h1 {
@@ -122,7 +225,11 @@
 
         .section h2 {
             margin: 0 0 10px;
-            font-size: clamp(1.4rem, 3vw, 1.8rem)
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            background: linear-gradient(90deg, var(--brand), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .projects {
@@ -160,19 +267,35 @@
             font-size: .9rem
         }
 
+        /* NEUTRAL skill/tech chips (no colors anywhere) */
         .chip {
             padding: 6px 10px;
             border-radius: 999px;
-            border: 1px solid #2b3f56
+            border: 1px solid #2b3f56;
+            background: #0f172a;
+            color: var(--text);
         }
 
         .cta {
             align-self: flex-start;
             padding: 10px 14px;
             border-radius: 12px;
-            background: linear-gradient(135deg, var(--brand), #22d3ee);
-            color: #001b2e;
-            font-weight: 800
+            background: var(--grad-cta);
+            color: #fff;
+            font-weight: 800;
+            border: 0;
+            box-shadow: 0 8px 24px #ef444420;
+            transition: transform .12s ease, box-shadow .12s ease, opacity .2s ease;
+        }
+
+        .cta:hover {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 0 12px 28px #ef444430;
+        }
+
+        .cta:active {
+            transform: translateY(0) scale(.99);
+            opacity: .9;
         }
 
         footer {
@@ -182,7 +305,17 @@
             margin-top: 30px
         }
 
-        /* Detail view */
+        /* Detail view + fades */
+        #list-view,
+        #detail-view {
+            transition: opacity .25s ease;
+        }
+
+        .fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
         #detail-view {
             display: none
         }
@@ -215,101 +348,16 @@
 
         .hr {
             border: 0;
-            border-top: 1px dashed #2a3a4f;
-            margin: 14px 0
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--brand), var(--accent), transparent);
+            margin: 14px 0;
         }
 
-        /* Carousel */
-        .carousel {
-            position: relative;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            max-width: 580px;
-            margin: 20px auto
-        }
-
-        .carousel.ready {
-            display: flex
-        }
-
-        .carousel img {
-            max-width: 100%;
-            border-radius: 8px
-        }
-
-        .carousel-btn {
-            position: absolute;
-            background: rgba(0, 0, 0, .55);
-            color: #fff;
-            border: 0;
-            font-size: 1.6rem;
-            padding: 8px 12px;
-            cursor: pointer;
-            border-radius: 50%;
-            top: 50%;
-            transform: translateY(-50%)
-        }
-
-        .carousel-btn.prev {
-            left: 8px
-        }
-
-        .carousel-btn.next {
-            right: 8px
-        }
-
-        .carousel-btn:hover {
-            background: rgba(0, 0, 0, .8)
-        }
-
-        .gallery-groups {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 10px 0 14px
-        }
-
-        .group-btn {
-            padding: 8px 12px;
-            border-radius: 999px;
-            border: 1px solid #294058;
-            background: #0f172a;
-            color: var(--text);
-            cursor: pointer;
-            font-weight: 600
-        }
-
-        .group-btn.active {
-            background: linear-gradient(135deg, var(--brand), #22d3ee);
-            color: #001b2e;
-            border-color: transparent
-        }
-
+        /* Carousel / gallery */
         .multi-carousel {
             max-width: 960px;
             margin: 12px auto 0
         }
-
-        /* .multi-carousel .strip {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px
-        } */
-
-        @media (max-width:700px) {
-            .multi-carousel .strip {
-                grid-template-columns: 1fr
-            }
-        }
-
-        /* .multi-carousel img {
-            width: 100%;
-            display: block;
-            border-radius: 8px;
-            border: 1px solid #223047;
-            background: #0f172a
-        } */
 
         .multi-carousel .nav {
             display: flex;
@@ -323,17 +371,14 @@
             color: #94a3b8
         }
 
-        /* keep big single screenshots tidy */
         #detailBody img.powerbi-shot {
             width: 100%;
             max-width: 980px;
-            /* cap so it doesn’t dominate */
             height: auto;
             border-radius: 8px;
             border: 1px solid #223047;
             background: #0f172a;
         }
-
 
         .multi-carousel .btn {
             border: 1px solid #294058;
@@ -348,45 +393,25 @@
             filter: brightness(1.08)
         }
 
-        .carousel-strip {
-            display: grid;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .carousel-strip img {
-            width: 100%;
-            max-width: 300px;
-            /* limit image width */
-            height: auto;
-            object-fit: contain;
-            justify-self: center;
-        }
-
         .multi-carousel .strip {
             display: grid;
             gap: 10px;
             justify-content: center;
-            /* center cells */
         }
 
         .multi-carousel img {
             width: 100%;
             max-width: 340px;
-            /* <-- hard cap so 1 image isn’t huge */
             height: auto;
             object-fit: contain;
             border-radius: 8px;
             border: 1px solid #223047;
             background: #0f172a;
             justify-self: center;
-            /* center each image in its grid cell */
         }
 
-        /* when only 1 image is shown */
         .multi-carousel .strip.single {
             grid-template-columns: 1fr;
-            /* a single centered column */
             justify-items: center;
         }
 
@@ -401,7 +426,6 @@
         .viz-wrap iframe {
             width: 100%;
             height: 720px;
-            /* tweak if you want it taller/shorter */
             border: 0;
         }
     </style>
@@ -415,6 +439,7 @@
                 <h1>Nikoo Moghadam</h1>
                 <div class="muted">Data Analyst · London, UK</div>
             </div>
+            <button id="themeToggle" class="back-btn" aria-label="Toggle theme">🌗 Theme</button>
         </div>
     </header>
 
@@ -424,7 +449,7 @@
             <section class="hero">
                 <div class="card">
                     <div class="kicker">WELCOME!</div>
-                    <p>Creating data‑driven apps and dashboards. Click a skill to see projects in
+                    <p>Creating data-driven apps and dashboards. Click a skill to see projects in
                         <strong>Python</strong>, <strong>Power BI</strong>, <strong>SQL</strong>, and
                         <strong>Java</strong>.
                     </p>
@@ -440,66 +465,103 @@
                 <aside class="card">
                     <div><strong>Contact</strong></div>
                     <div>Email: <a href="mailto:nikooo.m99@gmail.com">nikooo.m99@gmail.com</a></div>
-                    <div>GitHub: <a href="https://github.com/nikoo99m">nikoo99m</a></div>
-                    <div>LinkedIn: <a href="https://www.linkedin.com/in/nikoo-moghadam-5ab529306/">LinkedIn</a></div>
+                    <div>GitHub: <a href="https://github.com/nikoo99m" rel="noopener">nikoo99m</a></div>
+                    <div> <a href="https://www.linkedin.com/in/nikoo-moghadam-5ab529306/" rel="noopener">LinkedIn</a>
+                    </div>
                 </aside>
             </section>
 
             <section id="projects" class="section">
                 <h2>Projects</h2>
+                <input id="projectSearch" type="search" placeholder="Search projects…"
+                    style="width:100%;max-width:420px;margin:8px 0 14px;padding:10px 12px;border-radius:10px;border:1px solid #294058;background:#0f172a;color:#e5e7eb;">
+
                 <div class="projects">
-                    <article class="card project col-6" data-project="powerbi" data-tags="powerbi">
+                    <article class="card project col-6" data-project="powerbi" data-tags="powerbi dax">
                         <h3>Power BI Dashboard</h3>
-                        <p>Live KPI dashboard with slicers & drill‑through.</p>
-                        <div class="meta"><span class="chip">Power BI</span><span class="chip">DAX</span></div>
+                        <p>Live KPI dashboard with slicers & drill-through.</p>
+                        <div class="meta">
+                            <span class="chip">Power BI</span>
+                            <span class="chip">DAX</span>
+                            <span class="chip">Data Cleaning</span>
+                        </div>
                         <button class="cta open-project" data-project="powerbi">Open</button>
                     </article>
 
-                    <article class="card project col-6" data-project="cookingapp" data-tags="java">
+                    <article class="card project col-6" data-project="cookingapp"
+                        data-tags="java spring docker sql rest">
                         <h3>CookingApp</h3>
-                        <p>Recipe filters, reviews, ratings; React UI planned.</p>
-                        <div class="meta"><span class="chip">Java</span><span class="chip">Python</span><span
-                                class="chip">Spring Boot</span><span class="chip">JPA</span></div>
+                        <p>Cooking web application with diverse recipes</p>
+                        <div class="meta">
+                            <span class="chip">Java</span>
+                            <span class="chip">Spring Boot</span>
+                            <span class="chip">Docker</span>
+                            <span class="chip">PostgreSQL</span>
+                            <span class="chip">SQL</span>
+                            <span class="chip">RESTful API</span>
+                        </div>
                         <button class="cta open-project" data-project="cookingapp">Open</button>
                     </article>
 
-
-                    <article class="card project col-6" data-project="sqlwarehouse" data-tags="sql">
+                    <article class="card project col-6" data-project="sqlwarehouse"
+                        data-tags="sql etl warehouse modeling">
                         <h3>SQL Data Warehouse</h3>
-                        <p>Bronze → Silver → Gold warehouse with ETL, quality checks, and analytics-ready tables.</p>
+                        <p>SQL Data Warehouse with 3 layers Bronze → Silver → Gold with ETL, quality checks, and
+                            analytics-ready tables.</p>
                         <div class="meta">
-                            <span class="chip">SQL</span><span class="chip">ETL</span><span class="chip">Data
-                                Warehousing</span>
+                            <span class="chip">SQL</span>
+                            <span class="chip">ETL</span>
+                            <span class="chip">DDL</span>
                         </div>
                         <button class="cta open-project" data-project="sqlwarehouse">Open</button>
                     </article>
 
-
-                    <article class="card project col-6" data-project="scrabble" data-tags="java">
-                        <h3>Scrabble</h3>
-                        <p>Word logic and scoring.</p>
-                        <div class="meta"><span class="chip">Java</span></div>
+                    <article class="card project col-6" data-project="scrabble" data-tags="java oop algorithms">
+                        <h3>Scrabble Word Game</h3>
+                        <p>Scrabble game with AI opponent using clean Java OOP.</p>
+                        <div class="meta">
+                            <span class="chip">Java</span>
+                            <span class="chip">OOP</span>
+                            <span class="chip">Algorithms</span>
+                        </div>
                         <button class="cta open-project" data-project="scrabble">Open</button>
                     </article>
-                    <article class="card project col-6" data-project="britishreview" data-tags="tableau">
+
+                    <article class="card project col-6" data-project="britishreview" data-tags="tableau viz">
                         <h3>Interactive British Airways Review Dashboard</h3>
                         <p>Exploratory Tableau dashboard with filters, highlights, and drill-downs.</p>
-                        <div class="meta"><span class="chip">Tableau</span></div>
+                        <div class="meta">
+                            <span class="chip">Tableau</span>
+                            <span class="chip">Data Cleaning</span>
+                        </div>
                         <button class="cta open-project" data-project="britishreview">Open</button>
                     </article>
 
-
-                    <article class="card project col-6" data-project="sml" data-tags="java">
+                    <article class="card project col-6" data-project="sml" data-tags="java oop testing patterns">
                         <h3>Simple Machine Language Interpreter</h3>
-                        <p>Educational interpreter for a small instruction set.</p>
-                        <div class="meta"><span class="chip">Java</span></div>
+                        <p>Simple Machine Language Interpreter showcasing Java skills; design patterns, OOP.</p>
+                        <div class="meta">
+                            <span class="chip">Java</span>
+                            <span class="chip">Design Patterns</span>
+                            <span class="chip">Testing</span>
+                        </div>
                         <button class="cta open-project" data-project="sml">Open</button>
                     </article>
 
-                    <article class="card project col-6" data-project="battleship" data-tags="java python">
+                    <article class="card project col-6" data-project="battleship" data-tags="java python ai">
                         <h3>Battleship Solver</h3>
-                        <p>Solver for Battleship puzzles.</p>
-                        <div class="meta"><span class="chip">Java</span><span class="chip">Python</span></div>
+                        <p>Battleship game including data analysis and AI model; Flask API integration with Java engine.
+                        </p>
+                        <div class="meta">
+                            <span class="chip">Java</span>
+                            <span class="chip">Python</span>
+                            <span class="chip">Data Analysis</span>
+                            <span class="chip">TensorFlow</span>
+                            <span class="chip">Keras</span>
+                            <span class="chip">NumPy</span>
+                            <span class="chip">Pandas</span>
+                            <span class="chip">Matplotlib</span>
+                        </div>
                         <button class="cta open-project" data-project="battleship">Open</button>
                     </article>
                 </div>
@@ -507,8 +569,8 @@
         </section>
 
         <!-- ====== DETAIL VIEW ====== -->
-        <section id="detail-view">
-            <div class="card">
+        <section id="detail-view" class="fade-out">
+            <div class="card" style="background: var(--grad-card), var(--card); box-shadow:0 12px 48px #00000025;">
                 <div class="detail-header">
                     <button class="back-btn" id="backBtn" aria-label="Back to projects">← Back</button>
                     <div class="detail-meta" id="detailMeta"></div>
@@ -518,7 +580,11 @@
                 <div class="hr"></div>
                 <div id="detailBody"></div>
                 <div class="hr"></div>
-                <p><a id="detailLink" href="#" target="_blank" rel="noopener">View Repository</a></p>
+                <p>
+                    <a id="detailLink" href="#" target="_blank" rel="noopener">View Repository</a>
+                    <button id="copyLinkBtn" class="back-btn" style="margin-left:8px;">Copy link</button>
+                    <button id="shareBtn" class="back-btn" style="margin-left:8px;">Share</button>
+                </p>
             </div>
         </section>
 
@@ -526,7 +592,6 @@
         <template id="tpl-powerbi">
             <div data-title="Blinkit Sales & Performance dashboard (Static Preview)"
                 data-meta="Power BI,DAX,Data Modeling" data-link="#">
-                <!-- 1) DESCRIPTION (first <p> becomes the intro) -->
                 <p>
                     Static preview of a Power BI report that consolidates Blinkit retail performance across outlet
                     location tiers,
@@ -573,10 +638,10 @@
                 </div>
             </div>
         </template>
+
         <template id="tpl-sqlwarehouse">
             <div data-title="SQL Data Warehouse Project" data-meta="SQL,ETL,Data Modeling,Data Warehousing"
                 data-link="https://github.com/nikoo99m/SQL-Data-Warehouse-Project">
-                <!-- Intro (first <p> becomes the top intro) -->
                 <p>
                     Built a modern data warehouse using SQL Server, covering ETL processes, data modeling, and
                     analytics.
@@ -618,10 +683,8 @@
             </div>
         </template>
 
-
         <template id="tpl-britishreview">
             <div data-title="Interactive British Airways Review Dashboard" data-meta="Tableau" data-link="#">
-                <!-- 1) DESCRIPTION (first <p> becomes the intro at the top) -->
                 <p>
                     This dashboard presents an analysis of British Airways customer reviews sourced from a public
                     dataset. It surfaces core experience indicators, Overall Rating, Cabin Staff Service, Entertainment,
@@ -693,7 +756,7 @@
                         Live Interactive Dashboard</a></p>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
-                    <img src="images/11.png" alt="Interactive British Review Dashboard Screenshot"
+                    <img src="images/10.png" alt="Interactive British Review Dashboard Screenshot"
                         style="max-width:100%; border-radius:8px; border:1px solid #223047; background:#0f172a;">
                 </div>
 
@@ -717,16 +780,12 @@
         </template>
 
         <template id="tpl-cookingapp">
-            <div data-title="Yummy — CookingApp" data-meta="Java,Spring Boot,SQL,PostgreSQL,Docker,REST API,HTML,CSS"
+            <div data-title="CookingApp" data-meta="Java,Spring Boot,SQL,PostgreSQL,Docker,REST API,HTML,CSS"
                 data-link="https://github.com/nikoo99m/Yummy-web-application">
 
-                <!-- Intro (first <p> is the short preview) -->
-                <p>
-                    Yummy is a web application designed for food lovers who want to explore and cook delicious meals
-                    with ease. 🍛✨
-                </p>
+                <p>Yummy is a web application designed for food lovers who want to explore and cook delicious meals with
+                    ease. 🍛✨</p>
 
-                <!-- Tech stack -->
                 <h3>Tech Stack</h3>
                 <ul>
                     <li><strong>Java</strong> (Maven, Spring Boot)</li>
@@ -738,135 +797,94 @@
                     <li><strong>HTML & CSS</strong> — frontend interface design</li>
                 </ul>
 
-                <!-- Features -->
                 <h3>Features</h3>
                 <ul>
-                    <li>🥘 <strong>Discover Iranian Cuisine</strong> — Dive into the rich flavours of special dishes
-                        from Iran, with detailed recipes.</li>
-                    <li>🔍 <strong>Advanced Search & Filters</strong> — Find recipes by title, cuisine type,
-                        ingredients, cooking time, and more.</li>
-
+                    <li>🥘 <strong>Discover Iranian Cuisine</strong> — Rich flavours with detailed recipes.</li>
+                    <li>🔍 <strong>Advanced Search & Filters</strong> — Title, cuisine type, ingredients, cooking time,
+                        and more.</li>
                     <li>⭐ <strong>Perfect UX/UI</strong> — A beautiful, user-friendly interface for a smooth cooking
                         experience.</li>
                 </ul>
+
                 <h3>Impact & Purpose</h3>
                 <ul>
-                    <li>Showcases <strong>full-stack development skills</strong> with Java, Spring Boot, SQL, and
-                        Docker.</li>
-                    <li>Highlights ability to design <strong>REST APIs & microservices</strong> for scalable
-                        applications.</li>
-                    <li>Blends technology with <strong>culture</strong>, creating a food platform that’s both functional
-                        and inspiring.</li>
+                    <li>Showcases <strong>full-stack development</strong> with Java, Spring Boot, SQL, and Docker.</li>
+                    <li>Highlights <strong>REST APIs & microservices</strong> design for scalable apps.</li>
+                    <li>Blends technology with <strong>culture</strong> to create an inspiring food platform.</li>
                 </ul>
+
+
+            </div>
         </template>
-
-        <!-- Impact -->
-
-
-
 
         <template id="tpl-scrabble">
             <div data-title="Scrabble — OOP Word Game" data-meta="Java,OOP,Algorithms"
                 data-link="https://github.com/nikoo99m/Scrabble">
-
-                <!-- Intro (first <p> shows at the top) -->
                 <p>
-                    A full Scrabble game where users can play against a computer or another player. Built in
-                    Java with clean
-                    Object-Oriented design (Player, Board, Tile, Score, Game) for modularity, testability, and
-                    future extensions.
+                    A full Scrabble game where users can play against a computer or another player. Built in Java with
+                    clean Object-Oriented design (Player, Board, Tile, Score, Game) for modularity, testability, and
+                    future
+                    extensions.
                 </p>
 
                 <h3>Gameplay</h3>
                 <ul>
                     <li><strong>Modes:</strong> Human vs Human, Human vs Computer.</li>
-                    <li><strong>Rules:</strong> Standard Scrabble placement rules with contiguous words and
-                        cross checks.</li>
-                    <li><strong>Scoring:</strong> Letter values, double/triple letter & word bonuses, turn
-                        totals, and running scores.</li>
-                    <li><strong>Validation:</strong> Each move is validated against the existing board and
-                        dictionary lookups.</li>
+                    <li><strong>Rules:</strong> Standard Scrabble placement rules with contiguous words and cross
+                        checks.</li>
+                    <li><strong>Scoring:</strong> Letter values, double/triple letter & word bonuses, turn totals,
+                        running scores.</li>
+                    <li><strong>Validation:</strong> Each move is validated against the existing board and dictionary
+                        lookups.</li>
                 </ul>
 
                 <h3>Architecture (OOP)</h3>
                 <ul>
-                    <li><strong>Game:</strong> Orchestrates turns, enforces rules, end-game detection (tile bag
-                        empty, no moves).</li>
-                    <li><strong>Board:</strong> 15×15 grid, bonus layout, word and cross-word extraction for
-                        validation/scoring.</li>
-                    <li><strong>Tile:</strong> Letter + value; immutable objects with clear equality semantics.
-                    </li>
-                    <li><strong>Player:</strong> Rack management (draw, exchange), move submission, score
-                        tracking.</li>
-                    <li><strong>Score:</strong> Scoring utilities for base points + board multipliers, turn
-                        summaries.</li>
-                    <li><strong>AI (Computer):</strong> Move generator that evaluates candidate placements using
-                        heuristics.</li>
+                    <li><strong>Game:</strong> Orchestrates turns, enforces rules, end-game detection.</li>
+                    <li><strong>Board:</strong> 15×15 grid, bonus layout, word & cross-word extraction.</li>
+                    <li><strong>Tile:</strong> Letter + value; immutable objects with clear equality semantics.</li>
+                    <li><strong>Player:</strong> Rack management (draw, exchange), move submission, score tracking.</li>
+                    <li><strong>Score:</strong> Base points + multipliers, turn summaries.</li>
+                    <li><strong>AI:</strong> Anchor-based move generator with heuristics.</li>
                 </ul>
 
-
-                <h3>Skills Demonstrated</h3>
-                <ul>
-                    <li>Problem Solving · Object-Oriented Programming (OOP) · Java · Algorithm design &
-                        validation</li>
-                </ul>
+            </div>
         </template>
-
 
         <template id="tpl-sml">
             <div data-title="Simple Machine Language Interpreter" data-meta="Java,OOP,Design Patterns,Testing"
                 data-link="https://github.com/nikoo99m/Simple-Machine-Language-processor">
-
-                <!-- Intro -->
                 <p>
                     A Java-based interpreter for a simplified assembly-like language. Implements parsing, execution, and
-                    debugging
-                    of instructions, with extensible design patterns for flexibility and maintainability.
+                    debugging of instructions, with extensible design patterns for flexibility and maintainability.
                 </p>
 
-                <!-- Tech stack -->
                 <h3>Tech Stack</h3>
                 <ul>
-                    <li><strong>Java (Maven)</strong> — project build and dependency management.</li>
+                    <li><strong>Java (Maven)</strong> — build & deps.</li>
                     <li><strong>Design Patterns</strong> — Singleton, Reflection API, Dependency Injection, Factory
                         Class.</li>
-                    <li><strong>JUnit & Mockito</strong> — unit tests and mocking for reliable, test-driven development.
-                    </li>
+                    <li><strong>JUnit & Mockito</strong> — unit tests and mocks for TDD.</li>
                 </ul>
 
-                <!-- Features -->
                 <h3>Core Features</h3>
                 <ul>
-                    <li><strong>Lexer & Parser:</strong> Reads and tokenises SML programs into executable instructions.
+                    <li><strong>Lexer & Parser:</strong> Tokenises SML programs into executable instructions.</li>
+                    <li><strong>Instruction Set:</strong> Load, store, arithmetic, branch, print.</li>
+                    <li><strong>Execution Engine:</strong> Operates on registers & memory with robust error handling.
                     </li>
-                    <li><strong>Instruction Set:</strong> Supports load, store, arithmetic, branch, and print
-                        operations.</li>
-                    <li><strong>Execution Engine:</strong> Processes instructions against registers and memory with
-                        clear error handling.</li>
-                    <li><strong>Extensibility:</strong> New instructions can be added dynamically via Reflection and
-                        Factory classes without modifying existing code.</li>
-                    <li><strong>Dependency Injection:</strong> Decouples components (Parser, Executor, Memory) for
-                        testability and maintainability.</li>
-                    <li><strong>Testing Suite:</strong> Comprehensive JUnit tests cover parsing, execution logic, and
-                        error handling.</li>
+                    <li><strong>Extensibility:</strong> Add new instructions dynamically via Reflection + Factory.</li>
+                    <li><strong>Dependency Injection:</strong> Decouples Parser/Executor/Memory for testability.</li>
+                    <li><strong>Testing Suite:</strong> Comprehensive JUnit coverage for parsing & execution.</li>
                 </ul>
 
-                <!-- Impact -->
-                <h3>Impact & Purpose</h3>
-                <ul>
-                    <li>Demonstrates ability to design <strong>modular, extensible systems</strong> using OOP and design
-                        patterns.</li>
-                    <li>Highlights <strong>software engineering best practices</strong> including TDD, dependency
-                        management, and clean architecture.</li>
-                    <li>Provides an educational tool for understanding <strong>low-level instruction execution</strong>
-                        and <strong>compiler/interpreter design</strong>.</li>
-                </ul>
+            </div>
         </template>
 
         <template id="tpl-battleship">
-            <div data-title="Battleship Solver" data-meta="Java,Python"
+            <div data-title="Battleship Solver"
+                data-meta="Java,Python,Data Analysis,TensorFlow,Keras,NumPy,Matplotlib,Pandas"
                 data-link="https://github.com/nikoo99m/BattleshipSolver">
-                <!-- Description FIRST -->
                 <h3>Battleship Solver — Data-Driven AI & Analysis</h3>
 
                 <ul>
@@ -927,51 +945,6 @@
                 </div>
             </div>
         </template>
-
-
-        <script>
-            const images = ["images/1.png", "images/2.png", "images/3.png", "images/5.png", "images/6.png", "images/7.png"];
-            let currentIndex = 0;
-
-            function showImage(index) {
-                const img = document.getElementById("carousel-image");
-                img.src = images[index];
-            }
-
-            function nextImage() {
-                currentIndex = (currentIndex + 1) % images.length;
-                showImage(currentIndex);
-            }
-
-            function prevImage() {
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-                showImage(currentIndex);
-            }
-        </script>
-
-
-
-
-        <!-- Battleship with images listed relative to the site -->
-        <!-- <template id="tpl-battleship">
-            <div data-title="Battleship Solver" data-meta="Java,Python"
-                data-link="https://github.com/nikoo99m/BattleshipSolver" data-images="1.png, 4.png">
-                <p>Grid model + placement rules to find valid solutions efficiently.</p>
-                <ul>
-                    <li>Backtracking with pruning.</li>
-                    <li>Row/column ship counts.</li>
-                    <li>No‑adjacent‑ships constraint.</li>
-                </ul>
-                <p>Supports both small and large grids, producing solutions quickly. Can run in CLI mode or integrate
-                    with GUI.</p>
-
-                <div class="carousel">
-                    <button class="carousel-btn prev" type="button" aria-label="Previous image">&#10094;</button>
-                    <img id="carousel-image" src="" alt="Battleship Screenshot" />
-                    <button class="carousel-btn next" type="button" aria-label="Next image">&#10095;</button>
-                </div>
-            </div>
-        </template> -->
     </main>
 
     <footer class="container">
@@ -982,21 +955,67 @@
         // Year
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Filter by skill
+        function norm(s) { return (s || '').toLowerCase().replace(/\s+/g, ''); }
+
+
+        // Theme toggle
+        const toggle = document.getElementById('themeToggle');
+        toggle?.addEventListener('click', () => {
+            document.documentElement.classList.toggle('light');
+            localStorage.setItem('theme', document.documentElement.classList.contains('light') ? 'light' : 'dark');
+        });
+        (function initTheme() {
+            const saved = localStorage.getItem('theme');
+            if (saved === 'light') document.documentElement.classList.add('light');
+        })();
+
+        // Filter by skill + search + clickable chips
         const skillButtons = document.querySelectorAll('.skill');
-        const cards = document.querySelectorAll('[data-tags]');
+        const cards = document.querySelectorAll('.card.project');
+        const searchBox = document.getElementById('projectSearch');
+
         function setActive(btn) { skillButtons.forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
-        function filter(tag) {
-            const t = tag.toLowerCase();
+        let activeSkill = 'all';
+
+        function applyCombinedFilter() {
+            const qRaw = (searchBox?.value || '').trim();
+            const q = norm(qRaw);                      // normalized query
+            const active = norm(activeSkill);          // normalized active skill
+
             cards.forEach(card => {
-                const tags = card.getAttribute('data-tags') || '';
-                const show = (t === 'all') || tags.toLowerCase().includes(t);
-                card.style.display = show ? '' : 'none';
+                const tags = (card.getAttribute('data-tags') || '');
+                const title = (card.querySelector('h3')?.textContent || '');
+                const desc = (card.querySelector('p')?.textContent || '');
+
+                // normalized fields
+                const tagsN = norm(tags);
+                const titleN = norm(title);
+                const descN = norm(desc);
+
+                const matchSkill = (active === 'all') || tagsN.includes(active);
+                const matchText = !q || titleN.includes(q) || descN.includes(q) || tagsN.includes(q);
+
+                card.style.display = (matchSkill && matchText) ? '' : 'none';
             });
         }
-        skillButtons.forEach(btn => btn.addEventListener('click', () => { setActive(btn); filter(btn.dataset.skill); }));
 
-        // Views
+        function filter(tag) { activeSkill = norm(tag); applyCombinedFilter(); }
+
+
+        skillButtons.forEach(btn => btn.addEventListener('click', () => { setActive(btn); filter(btn.dataset.skill); }));
+        searchBox?.addEventListener('input', applyCombinedFilter);
+
+        document.addEventListener('click', (e) => {
+            const chip = e.target.closest('.chip');
+            if (!chip) return;
+            const tag = norm(chip.textContent.trim());
+
+            skillButtons.forEach(b => b.classList.remove('active'));
+            filter(tag);
+            chip.classList.add('active'); setTimeout(() => chip.classList.remove('active'), 700);
+        });
+
+        // Views + fades
         const listView = document.getElementById('list-view');
         const detailView = document.getElementById('detail-view');
         const detailTitle = document.getElementById('detailTitle');
@@ -1004,6 +1023,8 @@
         const detailBody = document.getElementById('detailBody');
         const detailMeta = document.getElementById('detailMeta');
         const detailLink = document.getElementById('detailLink');
+        const copyBtn = document.getElementById('copyLinkBtn');
+        const shareBtn = document.getElementById('shareBtn');
 
         const templates = {
             powerbi: document.getElementById('tpl-powerbi'),
@@ -1015,8 +1036,10 @@
             sqlwarehouse: document.getElementById('tpl-sqlwarehouse')
         };
 
+        function show(el) { el.classList.remove('fade-out'); el.style.display = 'block'; }
+        function hide(el) { el.classList.add('fade-out'); setTimeout(() => el.style.display = 'none', 200); }
+
         // Carousel initializer (reads data-images)
-        // Shows 3 images at a time (1 on small screens), with group buttons switching albums
         function initDetailCarousel(node) {
             const strip = document.querySelector('#detailBody #mc-strip');
             const prevBtn = document.querySelector('#detailBody #mc-prev');
@@ -1025,48 +1048,30 @@
             const groupBtns = Array.from(document.querySelectorAll('#detailBody .gallery-groups .group-btn'));
             if (!strip || !prevBtn || !nextBtn || !pager || groupBtns.length === 0) return;
 
-            // responsive count: 3 on desktop, 1 on small screens
             const getCount = () => window.matchMedia('(max-width:700px)').matches ? 1 : 3;
-
-            let images = [];
-            let start = 0; // index of first visible image
-            let visibleCount = getCount();
+            let images = []; let start = 0; let visibleCount = getCount();
 
             function render() {
                 visibleCount = getCount();
                 const total = images.length;
-
                 const count = Math.min(visibleCount, total);
-
-                // clamp start so we don't overshoot on resize or short albums
                 start = Math.max(0, Math.min(start, Math.max(0, total - count)));
 
                 strip.innerHTML = '';
                 strip.style.gridTemplateColumns = `repeat(${count || 1}, minmax(220px, 1fr))`;
                 strip.classList.toggle('single', count === 1);
 
-
-                if (!total) {
-                    pager.textContent = '0 of 0';
-                    prevBtn.disabled = nextBtn.disabled = true;
-                    return;
-                }
+                if (!total) { pager.textContent = '0 of 0'; prevBtn.disabled = nextBtn.disabled = true; return; }
 
                 for (let k = 0; k < count; k++) {
-                    const idx = start + k;                 // <-- no modulo wrap
+                    const idx = start + k;
                     const img = document.createElement('img');
-                    img.loading = 'lazy';
-                    img.alt = 'Screenshot';
-                    img.src = images[idx];
+                    img.loading = 'lazy'; img.alt = 'Screenshot'; img.src = images[idx];
                     strip.appendChild(img);
                 }
-
-                const from = start + 1;
-                const to = start + count;
+                const from = start + 1; const to = start + count;
                 pager.textContent = `${from}–${to} of ${total}`;
-
-                const onePage = total <= count;
-                prevBtn.disabled = nextBtn.disabled = onePage;
+                const onePage = total <= count; prevBtn.disabled = nextBtn.disabled = onePage;
             }
 
             function next() {
@@ -1076,7 +1081,6 @@
                 start = Math.min(start + count, total - count);
                 render();
             }
-
             function prev() {
                 const total = images.length;
                 const count = Math.min(visibleCount, total);
@@ -1085,84 +1089,111 @@
                 render();
             }
 
-
-            function next() {
-                if (!images.length) return;
-                start = (start + visibleCount) % images.length;
-                render();
-            }
-            function prev() {
-                if (!images.length) return;
-                start = (start - visibleCount) % images.length;
-                if (start < 0) start += images.length;
-                render();
-            }
-
-            // switch album
             function loadAlbum(btn) {
                 groupBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 images = (btn.dataset.images || '').split(',').map(s => s.trim()).filter(Boolean);
-                start = 0;
-                render();
+                start = 0; render();
             }
 
-            // events
             nextBtn.addEventListener('click', next);
             prevBtn.addEventListener('click', prev);
             groupBtns.forEach(btn => btn.addEventListener('click', () => loadAlbum(btn)));
             window.addEventListener('resize', render, { passive: true });
 
-            // init with the active group (or first)
             loadAlbum(groupBtns.find(b => b.classList.contains('active')) || groupBtns[0]);
         }
 
+        function hydrateEmbeds() {
+            detailBody.querySelectorAll('[data-embed]').forEach(node => {
+                const type = node.dataset.embed;
+                const src = node.dataset.src;
+                if (!src) return;
+                if (type === 'iframe') {
+                    const wrap = document.createElement('div'); wrap.className = 'viz-wrap';
+                    const ifr = document.createElement('iframe'); ifr.src = src; ifr.loading = 'lazy';
+                    wrap.appendChild(ifr); node.replaceWith(wrap);
+                }
+                if (type === 'image') {
+                    const img = document.createElement('img');
+                    img.src = src; img.alt = 'Screenshot'; img.loading = 'lazy';
+                    img.style.cssText = 'max-width:100%;border-radius:8px;border:1px solid #223047;background:#0f172a;cursor:zoom-in;';
+                    img.addEventListener('click', () => {
+                        const overlay = document.createElement('div');
+                        overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center;z-index:9999;';
+                        const big = document.createElement('img');
+                        big.src = src; big.style.cssText = 'max-width:92vw;max-height:92vh;border-radius:12px;';
+                        overlay.appendChild(big);
+                        overlay.addEventListener('click', () => overlay.remove());
+                        document.body.appendChild(overlay);
+                    });
+                    node.replaceWith(img);
+                }
+            });
+        }
 
         function openProject(key) {
             const tpl = templates[key];
             if (!tpl) return;
             const node = tpl.content.firstElementChild.cloneNode(true);
 
-            // Header
+            // Header (NEUTRAL chips)
             detailTitle.textContent = node.dataset.title || 'Project';
             detailMeta.innerHTML = '';
-            (node.dataset.meta || '').split(',').map(s => s.trim()).filter(Boolean).forEach(tag => {
-                const span = document.createElement('span'); span.className = 'chip'; span.textContent = tag; detailMeta.appendChild(span);
-            });
+            (node.dataset.meta || '')
+                .split(',')
+                .map(s => s.trim())
+                .filter(Boolean)
+                .forEach(tag => {
+                    const span = document.createElement('span');
+                    span.className = 'chip'; // neutral
+                    span.textContent = tag;
+                    detailMeta.appendChild(span);
+                });
 
             // Intro
-            const firstP = node.querySelector('p');
-            detailIntro.textContent = firstP ? firstP.textContent : '';
+            const firstP = node.querySelector('p'); detailIntro.textContent = firstP ? firstP.textContent : '';
 
-            // Body (append everything except the FIRST <p>)
+            // Body (append everything except first <p>)
             detailBody.innerHTML = '';
             const clone = tpl.content.cloneNode(true);
             const bodyDiv = clone.firstElementChild;
             if (bodyDiv) {
                 const firstPClone = bodyDiv.querySelector('p');
-                if (firstPClone) firstPClone.remove(); // remove only the intro paragraph
+                if (firstPClone) firstPClone.remove();
                 Array.from(bodyDiv.children).forEach(el => detailBody.appendChild(el));
             }
 
-
             // Link
-            detailLink.href = node.dataset.link || '#';
+            // detailLink.href = node.dataset.link || '#';
+            // Link (hide for projects without a repo)
+            const link = (node.dataset.link || '').trim();
+            const linkBar = detailLink.closest('p'); // the <p> that wraps the link + buttons
+            if (!link || link === '#' || link.toLowerCase() === 'none') {
+                if (linkBar) linkBar.style.display = 'none';
+                detailLink.removeAttribute('href');
+            } else {
+                detailLink.href = link;
+                if (linkBar) linkBar.style.display = 'block';
+            }
 
-            // Swap view
-            listView.style.display = 'none';
-            detailView.style.display = 'block';
+
+            // Swap view with fade
+            hide(listView);
+            show(detailView);
             window.scrollTo({ top: 0, behavior: 'instant' });
 
-            // Init carousel for this project (if any)
+            // Init helpers
             initDetailCarousel(node);
+            hydrateEmbeds();
 
             // Hash
             location.hash = `#/${key}`;
         }
 
         function backToList() {
-            detailView.style.display = 'none';
-            listView.style.display = 'block';
+            hide(detailView);
+            show(listView);
             location.hash = '#/';
             window.scrollTo({ top: 0, behavior: 'instant' });
         }
@@ -1177,6 +1208,35 @@
                 if (e.target.closest('.open-project')) return;
                 openProject(card.dataset.project);
             });
+        });
+
+        // Keyboard: Esc to close, arrows for carousel
+        document.addEventListener('keydown', (e) => {
+            const inDetail = detailView.style.display !== 'none';
+            if (e.key === 'Escape' && inDetail) { backToList(); }
+            if (!inDetail) return;
+            const prevBtn = document.querySelector('#detailBody #mc-prev');
+            const nextBtn = document.querySelector('#detailBody #mc-next');
+            if (e.key === 'ArrowLeft') prevBtn?.click();
+            if (e.key === 'ArrowRight') nextBtn?.click();
+        });
+
+        // Share / copy buttons
+        copyBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(detailLink.href);
+                copyBtn.textContent = 'Copied!'; setTimeout(() => copyBtn.textContent = 'Copy link', 1200);
+            } catch (_) { copyBtn.textContent = 'Failed'; }
+        });
+        shareBtn.addEventListener('click', async () => {
+            const title = detailTitle.textContent || 'Project';
+            const url = detailLink.href;
+            if (navigator.share) {
+                try { await navigator.share({ title, url }); } catch (_) { }
+            } else {
+                await navigator.clipboard.writeText(url);
+                shareBtn.textContent = 'Link copied'; setTimeout(() => shareBtn.textContent = 'Share', 1200);
+            }
         });
 
         // Deep link support
